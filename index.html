@@ -1,424 +1,288 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ana Júlia Bremer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --yellow: #E8DDB5; --yellow-hover: #d9cc9e; --dark: #111111; --raia-blue: #0B1F4B; --raia-blue-hover: #0d2660; --gray: #888; }
-    body { font-family: 'Inter', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
-    #home { min-height: 100vh; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 20px 40px; }
-    .hero-avatar { width: 96px; height: 96px; border-radius: 50%; border: 3px solid #e0e0e0; object-fit: cover; margin-bottom: 20px; background: #f0f0f0; display: block; }
-    .hero-name { font-size: 2.8rem; font-weight: 800; color: var(--dark); margin-bottom: 16px; letter-spacing: -1px; }
-    .hero-phrase { font-size: 1.05rem; color: #555; max-width: 480px; line-height: 1.75; margin-bottom: 52px; font-weight: 400; }
-    .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 860px; width: 100%; padding: 0 16px; }
-    .card { position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; min-height: 280px; display: flex; flex-direction: column; justify-content: flex-end; background: #111; transition: transform 0.3s ease; }
-    .card:hover { transform: scale(1.02); }
-    .card-bg { position: absolute; inset: 0; background-size: cover; background-position: center top; opacity: 0.55; transition: opacity 0.3s; }
-    .card:hover .card-bg { opacity: 0.42; }
-    .card-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0.92) 100%); }
-    .card-content { position: relative; z-index: 2; padding: 22px; }
-    .badge { display: inline-block; border: 1.5px solid rgba(255,255,255,0.55); color: #fff; font-size: 0.67rem; font-weight: 600; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 30px; margin-bottom: 12px; }
-    .card-title { font-size: 1.55rem; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.5px; }
-    .card-desc { font-size: 0.8rem; color: rgba(255,255,255,0.72); line-height: 1.6; margin-bottom: 18px; font-weight: 400; }
-    .card-btn { display: block; width: 100%; background: var(--yellow); color: var(--dark); border: none; border-radius: 30px; padding: 12px 20px; font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; text-align: center; cursor: pointer; transition: all 0.25s; font-family: 'Inter', sans-serif; text-decoration: none; }
-    .card-btn:hover { background: var(--yellow-hover); transform: translateY(-1px); }
-    .section { display: none; min-height: 100vh; padding: 70px 20px; background: #fff; animation: fadeIn 0.4s ease; }
-    .section.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    .section-inner { max-width: 860px; margin: 0 auto; }
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; background: none; border: 1.5px solid #ddd; color: var(--dark); font-size: 0.75rem; font-weight: 600; cursor: pointer; margin-bottom: 44px; letter-spacing: 1px; font-family: 'Inter', sans-serif; padding: 8px 18px; border-radius: 30px; transition: all 0.25s; }
-    .back-btn:hover { background: var(--dark); color: #fff; border-color: var(--dark); }
-    .section-badge { display: inline-block; background: var(--yellow); color: var(--dark); font-size: 0.67rem; font-weight: 800; letter-spacing: 3px; padding: 5px 14px; border-radius: 30px; margin-bottom: 18px; text-transform: uppercase; }
-    .section-badge.blue { background: var(--raia-blue); color: #fff; }
-    .section-title { font-size: 2.8rem; font-weight: 900; color: var(--dark); margin-bottom: 16px; line-height: 1.1; letter-spacing: -1px; }
-    .section-subtitle { font-size: 1rem; color: #666; line-height: 1.8; max-width: 600px; margin-bottom: 50px; font-weight: 400; }
-    .historia-hero { position: relative; background: var(--dark); border-radius: 20px; padding: 56px 44px; margin-bottom: 56px; overflow: hidden; }
-    .historia-hero-text { font-size: 1.35rem; font-weight: 500; color: rgba(255,255,255,0.9); line-height: 1.8; position: relative; z-index: 1; max-width: 620px; }
-    .historia-hero-text strong { color: var(--yellow); font-weight: 700; }
-    .historia-hero-author { margin-top: 24px; display: flex; align-items: center; gap: 12px; }
-    .historia-hero-line { width: 32px; height: 2px; background: var(--yellow); border-radius: 2px; }
-    .historia-hero-name { font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.4); letter-spacing: 3px; text-transform: uppercase; }
-    .historia-timeline { display: flex; flex-direction: column; margin-bottom: 56px; position: relative; }
-    .historia-timeline::before { content: ''; position: absolute; left: 18px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--yellow), #f0f0f0); border-radius: 2px; }
-    .timeline-item { display: flex; gap: 28px; padding: 0 0 40px 0; position: relative; opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-    .timeline-item:last-child { padding-bottom: 0; }
-    .timeline-item.visible { opacity: 1; transform: translateY(0); }
-    .timeline-dot { width: 38px; height: 38px; border-radius: 50%; background: #fff; border: 3px solid var(--yellow); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 2; transition: all 0.4s ease; }
-    .timeline-item:hover .timeline-dot { background: var(--yellow); transform: scale(1.1); }
-    .timeline-dot-inner { width: 10px; height: 10px; border-radius: 50%; background: var(--yellow); transition: all 0.4s ease; }
-    .timeline-item:hover .timeline-dot-inner { background: var(--dark); }
-    .timeline-card { flex: 1; background: #fafafa; border-radius: 16px; padding: 28px 28px 24px; border: 1.5px solid #f0f0f0; transition: all 0.35s ease; }
-    .timeline-item:hover .timeline-card { border-color: var(--yellow); box-shadow: 0 8px 32px rgba(232,221,181,0.2); transform: translateX(4px); }
-    .timeline-num { display: inline-block; font-size: 0.6rem; font-weight: 800; color: #fff; background: var(--dark); letter-spacing: 1.5px; padding: 3px 10px; border-radius: 20px; margin-bottom: 14px; }
-    .timeline-year { font-size: 1.15rem; font-weight: 800; color: var(--dark); margin-bottom: 10px; }
-    .timeline-text { font-size: 0.92rem; color: #666; line-height: 1.85; }
-    .timeline-text strong { color: var(--dark); font-weight: 700; }
-    .timeline-highlight { display: inline; background: linear-gradient(to top, rgba(232,221,181,0.35) 0%, rgba(232,221,181,0.35) 40%, transparent 40%); }
-    .galeria-section { margin-bottom: 48px; }
-    .galeria-label { font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #ccc; margin-bottom: 16px; display: block; }
-    .galeria-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .galeria-item { position: relative; border-radius: 12px; overflow: hidden; cursor: pointer; aspect-ratio: 3/4; background: #f2f2f2; transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease; }
-    .galeria-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-    .galeria-item-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 1.5rem; }
-    .galeria-item-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px 14px 14px; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%); opacity: 0; transition: opacity 0.3s ease; }
-    .galeria-item.ativo .galeria-item-caption, .galeria-item:hover .galeria-item-caption { opacity: 1; }
-    .galeria-item-caption span { font-size: 0.72rem; font-weight: 600; color: #fff; line-height: 1.4; display: block; }
-    .galeria-item.ativo { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.15); }
-    .galeria-item.ativo img { transform: scale(1.04); }
-    .galeria-dots { display: flex; gap: 6px; justify-content: center; margin-top: 14px; }
-    .galeria-dot { width: 6px; height: 6px; border-radius: 50%; background: #ddd; transition: all 0.3s ease; cursor: pointer; }
-    .galeria-dot.ativo { background: var(--dark); transform: scale(1.3); }
-    .social-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
-    .social-link { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.25s; font-family: 'Inter', sans-serif; }
-    .social-link svg { width: 16px; height: 16px; flex-shrink: 0; }
-    .social-link.instagram { background: var(--dark); color: #fff; border: 1.5px solid var(--dark); }
-    .social-link.instagram:hover { background: #333; border-color: #333; }
-    .social-link.linkedin { background: #fff; color: var(--dark); border: 1.5px solid #ccc; }
-    .social-link.linkedin:hover { border-color: var(--dark); background: #f5f5f5; }
-    .dor-box { background: #f8f8f8; border-radius: 16px; padding: 32px; margin-bottom: 40px; border-left: 4px solid var(--yellow); }
-    .dor-box.blue { border-left-color: var(--raia-blue); }
-    .dor-box p { font-size: 1rem; line-height: 1.9; color: #444; }
-    .dor-box strong { color: var(--dark); font-weight: 800; }
-    .servicos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 30px; }
-    .servico-card { border: 1.5px solid #ebebeb; border-radius: 14px; padding: 26px 22px; transition: all 0.25s; cursor: pointer; text-decoration: none; display: block; color: inherit; background: #fff; }
-    .servico-card:hover { border-color: var(--yellow); box-shadow: 0 6px 24px rgba(232,221,181,0.3); transform: translateY(-3px); }
-    .servico-badge { display: inline-block; background: var(--yellow); color: var(--dark); font-size: 0.6rem; font-weight: 800; letter-spacing: 1.5px; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; text-transform: uppercase; }
-    .servico-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--dark); font-weight: 700; }
-    .servico-card p { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
-    .servico-arrow { display: inline-block; margin-top: 16px; font-size: 0.72rem; font-weight: 800; color: var(--dark); letter-spacing: 1.5px; text-transform: uppercase; }
-    .raia-box { background: var(--dark); color: #fff; border-radius: 20px; padding: 64px 40px; text-align: center; margin-top: 40px; position: relative; overflow: hidden; }
-    .raia-title { font-size: 4rem; font-weight: 900; letter-spacing: 18px; color: var(--raia-blue); margin-bottom: 6px; line-height: 1; }
-    .raia-divider { width: 40px; height: 2px; background: var(--yellow); margin: 20px auto 28px; border-radius: 2px; }
-    .raia-box p { font-size: 0.95rem; line-height: 1.9; color: rgba(255,255,255,0.55); max-width: 440px; margin: 0 auto 36px; font-weight: 400; }
-    .raia-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-raia { display: inline-flex; align-items: center; gap: 8px; background: var(--raia-blue); color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 0.72rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; transition: all 0.25s; border: 1.5px solid var(--raia-blue); }
-    .btn-raia:hover { background: var(--raia-blue-hover); transform: translateY(-2px); }
-    .btn-ghost-raia { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: rgba(255,255,255,0.55); padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 2px; border: 1.5px solid rgba(255,255,255,0.15); transition: all 0.25s; text-transform: uppercase; }
-    .btn-ghost-raia:hover { border-color: rgba(255,255,255,0.45); color: rgba(255,255,255,0.85); transform: translateY(-2px); }
-    .palestras-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 50px; }
-    .palestra-photo { background: #f5f5f5; border-radius: 12px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 0.72rem; text-align: center; padding: 10px; font-weight: 500; overflow: hidden; }
-    .palestra-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
-    .contato-box { background: var(--dark); border-radius: 20px; padding: 56px 40px; text-align: center; }
-    .contato-box h3 { font-size: 2rem; font-weight: 900; margin-bottom: 12px; color: #fff; letter-spacing: -0.5px; }
-    .contato-box p { color: rgba(255,255,255,0.5); margin-bottom: 28px; font-size: 0.92rem; line-height: 1.7; }
-    .email-link { font-size: 1.1rem; font-weight: 700; color: var(--yellow); text-decoration: none; border-bottom: 2px solid var(--yellow); padding-bottom: 2px; transition: opacity 0.25s; }
-    .email-link:hover { opacity: 0.6; }
-    .contato-socials { display: flex; gap: 12px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
-    @media (max-width: 620px) {
-      .cards-grid { grid-template-columns: 1fr; }
-      .hero-name { font-size: 2rem; }
-      .section-title { font-size: 1.9rem; }
-      .palestras-grid { grid-template-columns: repeat(2, 1fr); }
-      .galeria-grid { grid-template-columns: repeat(2, 1fr); }
-      .raia-box { padding: 44px 24px; }
-      .raia-title { font-size: 2.8rem; letter-spacing: 12px; }
-      .contato-box { padding: 36px 20px; }
-      .card { min-height: 240px; }
-      .social-links { flex-direction: column; }
-      .historia-hero { padding: 36px 24px; }
-      .historia-hero-text { font-size: 1.1rem; }
-      .timeline-card { padding: 22px 20px 20px; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--y:#E8DDB5;--yh:#d9cc9e;--d:#111;--rb:#0B1F4B;--rbh:#0d2660;--g:#888}
+    body{font-family:'Inter',sans-serif;background:#fff;color:var(--d);overflow-x:hidden}
+    #home{min-height:100vh;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px 40px}
+    .ha{width:96px;height:96px;border-radius:50%;border:3px solid #e0e0e0;object-fit:cover;margin-bottom:20px;background:#f0f0f0}
+    .hn{font-size:2.8rem;font-weight:800;color:var(--d);margin-bottom:16px;letter-spacing:-1px}
+    .hp{font-size:1.05rem;color:#555;max-width:480px;line-height:1.75;margin-bottom:52px}
+    .cg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:860px;width:100%;padding:0 16px}
+    .c{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;background:#111;transition:transform .3s}
+    .c:hover{transform:scale(1.02)}
+    .cb{position:absolute;inset:0;background-size:cover;background-position:center top;opacity:.55;transition:opacity .3s}
+    .c:hover .cb{opacity:.42}
+    .co{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.7) 55%,rgba(0,0,0,.92))}
+    .cc{position:relative;z-index:2;padding:22px}
+    .bd{display:inline-block;border:1.5px solid rgba(255,255,255,.55);color:#fff;font-size:.67rem;font-weight:600;letter-spacing:.5px;padding:4px 12px;border-radius:30px;margin-bottom:12px}
+    .ct{font-size:1.55rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:8px;letter-spacing:-.5px}
+    .cd{font-size:.8rem;color:rgba(255,255,255,.72);line-height:1.6;margin-bottom:18px}
+    .cbtn{display:block;width:100%;background:var(--y);color:var(--d);border:none;border-radius:30px;padding:12px 20px;font-size:.7rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-align:center;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif;text-decoration:none}
+    .cbtn:hover{background:var(--yh);transform:translateY(-1px)}
+    .sec{display:none;min-height:100vh;padding:70px 20px;background:#fff;animation:fi .4s ease}
+    .sec.active{display:block}
+    @keyframes fi{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .si{max-width:860px;margin:0 auto}
+    .bb{display:inline-flex;align-items:center;gap:8px;background:none;border:1.5px solid #ddd;color:var(--d);font-size:.75rem;font-weight:600;cursor:pointer;margin-bottom:44px;letter-spacing:1px;font-family:'Inter',sans-serif;padding:8px 18px;border-radius:30px;transition:all .25s}
+    .bb:hover{background:var(--d);color:#fff;border-color:var(--d)}
+    .sb{display:inline-block;background:var(--y);color:var(--d);font-size:.67rem;font-weight:800;letter-spacing:3px;padding:5px 14px;border-radius:30px;margin-bottom:18px;text-transform:uppercase}
+    .sb.bl{background:var(--rb);color:#fff}
+    .st{font-size:2.8rem;font-weight:900;color:var(--d);margin-bottom:16px;line-height:1.1;letter-spacing:-1px}
+    .ss{font-size:1rem;color:#666;line-height:1.8;max-width:600px;margin-bottom:50px}
+    .hh{position:relative;background:var(--d);border-radius:20px;padding:56px 44px;margin-bottom:56px;overflow:hidden}
+    .hh::before{content:'"';position:absolute;top:-20px;left:24px;font-size:12rem;font-weight:900;color:var(--y);opacity:.08;line-height:1;pointer-events:none}
+    .hht{font-size:1.35rem;font-weight:500;color:rgba(255,255,255,.9);line-height:1.8;position:relative;z-index:1;max-width:620px}
+    .hht strong{color:var(--y);font-weight:700}
+    .hha{margin-top:24px;display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+    .hhl{width:32px;height:2px;background:var(--y);border-radius:2px}
+    .hhn{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:3px;text-transform:uppercase}
+    .htl{display:flex;flex-direction:column;margin-bottom:56px;position:relative}
+    .htl::before{content:'';position:absolute;left:18px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--y),#f0f0f0);border-radius:2px}
+    .ti{display:flex;gap:28px;padding:0 0 40px;position:relative;opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.22,1,.36,1)}
+    .ti:last-child{padding-bottom:0}
+    .ti.v{opacity:1;transform:translateY(0)}
+    .td{width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid var(--y);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:2;transition:all .4s}
+    .ti:hover .td{background:var(--y);transform:scale(1.1)}
+    .tdi{width:10px;height:10px;border-radius:50%;background:var(--y);transition:all .4s}
+    .ti:hover .tdi{background:var(--d)}
+    .tc{flex:1;background:#fafafa;border-radius:16px;padding:28px 28px 24px;border:1.5px solid #f0f0f0;transition:all .35s}
+    .ti:hover .tc{border-color:var(--y);box-shadow:0 8px 32px rgba(232,221,181,.2);transform:translateX(4px)}
+    .tn{display:inline-block;font-size:.6rem;font-weight:800;color:#fff;background:var(--d);letter-spacing:1.5px;padding:3px 10px;border-radius:20px;margin-bottom:14px}
+    .ty{font-size:1.15rem;font-weight:800;color:var(--d);margin-bottom:10px}
+    .tt{font-size:.92rem;color:#666;line-height:1.85}
+    .tt strong{color:var(--d);font-weight:700}
+    .thl{display:inline;background:linear-gradient(to top,rgba(232,221,181,.35) 0%,rgba(232,221,181,.35) 40%,transparent 40%)}
+    /* GALERIA TIMELINE */
+    .gs{margin-bottom:48px}
+    .gh{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .gl{font-size:.65rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#ccc}
+    .gc{display:flex;align-items:center;gap:8px}
+    .gcn{font-size:.7rem;font-weight:700;color:#bbb;letter-spacing:1px;min-width:40px;text-align:center}
+    .ab{width:34px;height:34px;border-radius:50%;border:1.5px solid #e0e0e0;background:#fff;color:var(--d);font-size:.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;font-family:'Inter',sans-serif}
+    .ab:hover{background:var(--d);color:#fff;border-color:var(--d)}
+    .gg{display:flex;gap:12px;overflow:hidden}
+    .gi{flex:0 0 calc(33.333% - 8px);position:relative;border-radius:14px;overflow:hidden;background:#f2f2f2;transition:all .5s cubic-bezier(.25,1,.5,1)}
+    .gi img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;transition:transform .5s}
+    .gi.act{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.12)}
+    .gi.act img{transform:scale(1.03)}
+    .gip{width:100%;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:1.5rem}
+    /* Legenda sempre visível */
+    .gic{position:absolute;bottom:0;left:0;right:0;padding:28px 14px 14px;background:linear-gradient(to top,rgba(0,0,0,.7),transparent)}
+    .gic-n{font-size:.55rem;font-weight:800;color:var(--y);letter-spacing:2px;margin-bottom:3px;display:block}
+    .gic-t{font-size:.72rem;font-weight:600;color:#fff;line-height:1.4;display:block}
+    /* Linha do tempo horizontal */
+    .gtl{display:flex;align-items:center;justify-content:center;gap:0;margin-top:16px;position:relative;padding:0 4px}
+    .gtl::before{content:'';position:absolute;top:50%;left:0;right:0;height:1.5px;background:#eee;transform:translateY(-50%)}
+    .gtl-dot{width:10px;height:10px;border-radius:50%;background:#ddd;border:2px solid #fff;position:relative;z-index:1;cursor:pointer;transition:all .3s;flex-shrink:0}
+    .gtl-dot.act{background:var(--d);transform:scale(1.4);border-color:#fff;box-shadow:0 0 0 3px rgba(232,221,181,.4)}
+    .gtl-line{flex:1;height:1.5px;background:#eee;position:relative;z-index:0}
+    .gtl-line.done{background:var(--d)}
+    .sl{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+    .sla{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:8px;text-decoration:none;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;transition:all .25s;font-family:'Inter',sans-serif}
+    .sla svg{width:16px;height:16px;flex-shrink:0}
+    .sla.ig{background:var(--d);color:#fff;border:1.5px solid var(--d)}
+    .sla.ig:hover{background:#333;border-color:#333}
+    .sla.li{background:#fff;color:var(--d);border:1.5px solid #ccc}
+    .sla.li:hover{border-color:var(--d);background:#f5f5f5}
+    .db{background:#f8f8f8;border-radius:16px;padding:32px;margin-bottom:40px;border-left:4px solid var(--y)}
+    .db.bl{border-left-color:var(--rb)}
+    .db p{font-size:1rem;line-height:1.9;color:#444}
+    .db strong{color:var(--d);font-weight:800}
+    .svg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:30px}
+    .sc{border:1.5px solid #ebebeb;border-radius:14px;padding:26px 22px;transition:all .25s;cursor:pointer;text-decoration:none;display:block;color:inherit;background:#fff}
+    .sc:hover{border-color:var(--y);box-shadow:0 6px 24px rgba(232,221,181,.3);transform:translateY(-3px)}
+    .scb{display:inline-block;background:var(--y);color:var(--d);font-size:.6rem;font-weight:800;letter-spacing:1.5px;padding:3px 10px;border-radius:20px;margin-bottom:12px;text-transform:uppercase}
+    .sc h3{font-size:1.1rem;margin-bottom:8px;color:var(--d);font-weight:700}
+    .sc p{font-size:.82rem;color:var(--g);line-height:1.6}
+    .sa{display:inline-block;margin-top:16px;font-size:.72rem;font-weight:800;color:var(--d);letter-spacing:1.5px;text-transform:uppercase}
+    .rb{background:var(--d);color:#fff;border-radius:20px;padding:64px 40px;text-align:center;margin-top:40px;position:relative;overflow:hidden}
+    .rb::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--rb),transparent)}
+    .rt{font-size:4rem;font-weight:900;letter-spacing:18px;color:var(--rb);margin-bottom:6px;line-height:1}
+    .rd{width:40px;height:2px;background:var(--y);margin:20px auto 28px;border-radius:2px}
+    .rb p{font-size:.95rem;line-height:1.9;color:rgba(255,255,255,.55);max-width:440px;margin:0 auto 36px}
+    .rbs{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .br{display:inline-flex;align-items:center;gap:8px;background:var(--rb);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-size:.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;transition:all .25s;border:1.5px solid var(--rb)}
+    .br:hover{background:var(--rbh);transform:translateY(-2px)}
+    .bg{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,.55);padding:14px 32px;border-radius:8px;text-decoration:none;font-size:.72rem;font-weight:600;letter-spacing:2px;border:1.5px solid rgba(255,255,255,.15);transition:all .25s;text-transform:uppercase}
+    .bg:hover{border-color:rgba(255,255,255,.45);color:rgba(255,255,255,.85);transform:translateY(-2px)}
+    .pg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:50px}
+    .pp{background:#f5f5f5;border-radius:12px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:.72rem;text-align:center;padding:10px;overflow:hidden}
+    .pp img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+    .cx{background:var(--d);border-radius:20px;padding:56px 40px;text-align:center}
+    .cx h3{font-size:2rem;font-weight:900;margin-bottom:12px;color:#fff;letter-spacing:-.5px}
+    .cx p{color:rgba(255,255,255,.5);margin-bottom:28px;font-size:.92rem;line-height:1.7}
+    .el{font-size:1.1rem;font-weight:700;color:var(--y);text-decoration:none;border-bottom:2px solid var(--y);padding-bottom:2px;transition:opacity .25s}
+    .el:hover{opacity:.6}
+    .cs{display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+    @media(max-width:620px){
+      .cg{grid-template-columns:1fr}.hn{font-size:2rem}.st{font-size:1.9rem}
+      .pg{grid-template-columns:repeat(2,1fr)}.rb{padding:44px 24px}
+      .rt{font-size:2.8rem;letter-spacing:12px}.cx{padding:36px 20px}
+      .c{min-height:240px}.sl{flex-direction:column}.hh{padding:36px 24px}
+      .hht{font-size:1.1rem}.tc{padding:22px 20px 20px}
+      .gi{flex:0 0 calc(50% - 6px)}.gg{flex-wrap:wrap}
     }
   </style>
 </head>
 <body>
 
 <div id="home">
-  <img class="hero-avatar" src="sua-foto.jpg" alt="Ana Júlia Bremer" onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';" />
-  <div id="avatar-fallback" style="display:none; width:96px; height:96px; border-radius:50%; border:3px solid #e0e0e0; background:#f0f0f0; align-items:center; justify-content:center; font-size:36px; margin-bottom:20px;">🤍</div>
-  <h1 class="hero-name">Ana Júlia Bremer</h1>
-  <p class="hero-phrase">Dinheiro não precisa ser complicado —<br/>nem na sua vida, nem no seu negócio.</p>
-  <div class="cards-grid">
-    <div class="card" onclick="showSection('historia')">
-      <div class="card-bg" style="background-image: url('foto-historia.jpg');"></div>
-      <div class="card-overlay"></div>
-      <div class="card-content">
-        <div class="badge">Conheça</div>
-        <div class="card-title">Minha História</div>
-        <div class="card-desc">Quem é Ana Júlia Bremer e o que me trouxe até aqui.</div>
-        <div class="card-btn">VER MAIS →</div>
-      </div>
+  <img class="ha" src="sua-foto.jpg" alt="Ana Júlia Bremer" onerror="this.style.display='none';document.getElementById('af').style.display='flex'"/>
+  <div id="af" style="display:none;width:96px;height:96px;border-radius:50%;border:3px solid #e0e0e0;background:#f0f0f0;align-items:center;justify-content:center;font-size:36px;margin-bottom:20px">🤍</div>
+  <h1 class="hn">Ana Júlia Bremer</h1>
+  <p class="hp">Dinheiro não precisa ser complicado —<br/>nem na sua vida, nem no seu negócio.</p>
+  <div class="cg">
+    <div class="c" onclick="go('historia')"><div class="cb" style="background-image:url('foto-historia.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Conheça</div><div class="ct">Minha História</div><div class="cd">Quem é Ana Júlia Bremer e o que me trouxe até aqui.</div><div class="cbtn">VER MAIS →</div></div></div>
+    <div class="c" onclick="go('pessoais')"><div class="cb" style="background-image:url('foto-pessoal.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Para você</div><div class="ct">Finanças Pessoais</div><div class="cd">Planejamento, investimentos e o seu caminho para a liberdade financeira.</div><div class="cbtn">QUERO SABER MAIS →</div></div></div>
+    <div class="c" onclick="go('empresariais')"><div class="cb" style="background-image:url('foto-empresarial.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Para sua empresa</div><div class="ct">Finanças Empresariais</div><div class="cd">Estrutura financeira sólida para negócios que querem crescer de verdade.</div><div class="cbtn">CONHECER A RAIA →</div></div></div>
+    <div class="c" onclick="go('palestras')"><div class="cb" style="background-image:url('foto-palestra.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Conteúdo</div><div class="ct">Palestras & Aulas</div><div class="cd">Leve educação financeira de impacto para o seu evento ou equipe.</div><div class="cbtn">QUERO CONTRATAR →</div></div></div>
+  </div>
+</div>
+
+<div id="historia" class="sec">
+  <div class="si">
+    <button class="bb" onclick="bk()">← Voltar</button>
+    <div class="sb">Minha História</div>
+    <h2 class="st">De onde eu vim e<br/>para onde estou indo</h2>
+    <div class="hh">
+      <p class="hht">Dinheiro sempre foi sobre <strong>liberdade</strong> pra mim. Quando percebi que poderia ajudar pessoas a alcançarem os seus sonhos dando educação financeira, decidi que <strong>precisava falar sobre isso.</strong></p>
+      <div class="hha"><div class="hhl"></div><span class="hhn">Ana Júlia Bremer</span></div>
     </div>
-    <div class="card" onclick="showSection('pessoais')">
-      <div class="card-bg" style="background-image: url('foto-pessoal.jpg');"></div>
-      <div class="card-overlay"></div>
-      <div class="card-content">
-        <div class="badge">Para você</div>
-        <div class="card-title">Finanças Pessoais</div>
-        <div class="card-desc">Planejamento, investimentos e o seu caminho para a liberdade financeira.</div>
-        <div class="card-btn">QUERO SABER MAIS →</div>
-      </div>
+    <div class="htl">
+      <div class="ti"><div class="td"><div class="tdi"></div></div><div class="tc"><div class="tn">01</div><div class="ty">O começo</div><div class="tt">Desde criança eu era cheia de sonhos, queria viajar, ter coisas, experimentar tudo. Um dia pedi um videogame para a minha mãe e ela disse que não tinha dinheiro. Mas me disse uma coisa que mudou tudo: <strong><span class="thl">"Se você juntar dinheiro, você consegue comprar."</span></strong><br/><br/>Juntei. Comprei. E nunca mais parei de querer entender como esse tal de dinheiro funcionava.</div></div></div>
+      <div class="ti"><div class="td"><div class="tdi"></div></div><div class="tc"><div class="tn">02</div><div class="ty">A virada</div><div class="tt">Comecei a trabalhar cedo, vendi doce na rua, cuidei do Instagram de empresas, estagiei numa contabilidade. Cada centavo que entrava, <strong>70% ia direto para educação:</strong> cursos, livros, aulas.<br/><br/>Fui percebendo que saber sobre dinheiro não era só para quem quer ficar rico, é sobre <strong><span class="thl">quem quer viver bem.</span></strong> Aí comecei a querer ensinar sobre dinheiro para todo mundo. E foi assim que minha escola da época me chamou para dar aula de finanças para os alunos do ensino médio. E foi aí que as coisas começaram a acontecer.</div></div></div>
+      <div class="ti"><div class="td"><div class="tdi"></div></div><div class="tc"><div class="tn">03</div><div class="ty">Hoje</div><div class="tt">Hoje cuido das finanças de pessoas e empresas, e dou aulas e palestras por aí. Tudo com uma ideia só: <strong><span class="thl">dinheiro não precisa ser complicado.</span></strong><br/><br/>Sem siglas que ninguém entende, sem economês, sem fórmula mágica. Do planejamento pessoal até o financeiro de uma empresa, a proposta é a mesma: <strong>ser simples.</strong></div></div></div>
     </div>
-    <div class="card" onclick="showSection('empresariais')">
-      <div class="card-bg" style="background-image: url('foto-empresarial.jpg');"></div>
-      <div class="card-overlay"></div>
-      <div class="card-content">
-        <div class="badge">Para sua empresa</div>
-        <div class="card-title">Finanças Empresariais</div>
-        <div class="card-desc">Estrutura financeira sólida para negócios que querem crescer de verdade.</div>
-        <div class="card-btn">CONHECER A RAIA →</div>
+
+    <!-- GALERIA TIMELINE -->
+    <div class="gs">
+      <div class="gh">
+        <span class="gl">Momentos</span>
+        <div class="gc">
+          <span class="gcn" id="cnt">01 / 05</span>
+          <button class="ab" onclick="mv(-1)">←</button>
+          <button class="ab" onclick="mv(1)">→</button>
+        </div>
       </div>
+      <div class="gg" id="gg"></div>
+      <div class="gtl" id="gtl"></div>
     </div>
-    <div class="card" onclick="showSection('palestras')">
-      <div class="card-bg" style="background-image: url('foto-palestra.jpg');"></div>
-      <div class="card-overlay"></div>
-      <div class="card-content">
-        <div class="badge">Conteúdo</div>
-        <div class="card-title">Palestras & Aulas</div>
-        <div class="card-desc">Leve educação financeira de impacto para o seu evento ou equipe.</div>
-        <div class="card-btn">QUERO CONTRATAR →</div>
-      </div>
+
+    <div class="sl">
+      <a href="https://www.instagram.com/julia.bremerr" target="_blank" class="sla ig"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
+      <a href="https://www.linkedin.com/in/ajuliabremer" target="_blank" class="sla li"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
     </div>
   </div>
 </div>
 
-<div id="historia" class="section">
-  <div class="section-inner">
-    <button class="back-btn" onclick="goHome()">← Voltar</button>
-    <div class="section-badge">Minha História</div>
-    <h2 class="section-title">De onde eu vim e<br/>para onde estou indo</h2>
-    <div class="historia-hero">
-      <p class="historia-hero-text">
-        Dinheiro sempre foi sobre <strong>liberdade</strong> pra mim. Quando percebi que poderia ajudar pessoas a alcançarem os seus sonhos dando educação financeira, decidi que <strong>precisava falar sobre isso.</strong>
-      </p>
-      <div class="historia-hero-author">
-        <div class="historia-hero-line"></div>
-        <span class="historia-hero-name">Ana Júlia Bremer</span>
-      </div>
-    </div>
-    <div class="historia-timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
-        <div class="timeline-card">
-          <div class="timeline-num">01</div>
-          <div class="timeline-year">O começo</div>
-          <div class="timeline-text">
-            Desde criança eu era cheia de sonhos, queria viajar, ter coisas, experimentar tudo. Um dia pedi um videogame para a minha mãe e ela disse que não tinha dinheiro. Mas me disse uma coisa que mudou tudo: <strong><span class="timeline-highlight">"Se você juntar dinheiro, você consegue comprar."</span></strong>
-            <br/><br/>
-            Juntei. Comprei. E nunca mais parei de querer entender como esse tal de dinheiro funcionava.
-          </div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
-        <div class="timeline-card">
-          <div class="timeline-num">02</div>
-          <div class="timeline-year">A virada</div>
-          <div class="timeline-text">
-            Comecei a trabalhar cedo, vendi doce na rua, cuidei do Instagram de empresas, estagiei numa contabilidade. Cada centavo que entrava, <strong>70% ia direto para educação:</strong> cursos, livros, aulas.
-            <br/><br/>
-            Fui percebendo que saber sobre dinheiro não era só para quem quer ficar rico, é sobre <strong><span class="timeline-highlight">quem quer viver bem.</span></strong> Aí comecei a querer ensinar sobre dinheiro para todo mundo. E foi assim que minha escola da época me chamou para dar aula de finanças para os alunos do ensino médio. E foi aí que as coisas começaram a acontecer.
-          </div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
-        <div class="timeline-card">
-          <div class="timeline-num">03</div>
-          <div class="timeline-year">Hoje</div>
-          <div class="timeline-text">
-            Hoje cuido das finanças de pessoas e empresas, e dou aulas e palestras por aí. Tudo com uma ideia só: <strong><span class="timeline-highlight">dinheiro não precisa ser complicado.</span></strong>
-            <br/><br/>
-            Sem siglas que ninguém entende, sem economês, sem fórmula mágica. Do planejamento pessoal até o financeiro de uma empresa, a proposta é a mesma: <strong>ser simples.</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="galeria-section">
-      <span class="galeria-label">Momentos</span>
-      <div class="galeria-grid">
-        <div class="galeria-item ativo" onclick="setFotoAtiva(0)">
-          <img src="foto1.jpg" alt="foto" onerror="this.parentElement.innerHTML='<div class=galeria-item-placeholder>📸</div>'" />
-          <div class="galeria-item-caption"><span>Minha primeira palestra</span></div>
-        </div>
-        <div class="galeria-item" onclick="setFotoAtiva(1)">
-          <img src="foto2.jpg" alt="foto" onerror="this.parentElement.innerHTML='<div class=galeria-item-placeholder>📸</div>'" />
-          <div class="galeria-item-caption"><span>Primeira rodada de negócios</span></div>
-        </div>
-        <div class="galeria-item" onclick="setFotoAtiva(2)">
-          <img src="foto3.jpg" alt="foto" onerror="this.parentElement.innerHTML='<div class=galeria-item-placeholder>📸</div>'" />
-          <div class="galeria-item-caption"><span>Maior evento de finanças do Brasil</span></div>
-        </div>
-        <div class="galeria-item" onclick="setFotoAtiva(3)">
-          <img src="foto4.jpg" alt="foto" onerror="this.parentElement.innerHTML='<div class=galeria-item-placeholder>📸</div>'" />
-          <div class="galeria-item-caption"><span>Palestra sobre dinheiro e sonhos</span></div>
-        </div>
-      </div>
-      <div class="galeria-dots">
-        <div class="galeria-dot ativo" onclick="setFotoAtiva(0)"></div>
-        <div class="galeria-dot" onclick="setFotoAtiva(1)"></div>
-        <div class="galeria-dot" onclick="setFotoAtiva(2)"></div>
-        <div class="galeria-dot" onclick="setFotoAtiva(3)"></div>
-        <div class="galeria-dot" onclick="setFotoAtiva(4)"></div>
-      </div>
-    </div>
-    <div class="social-links">
-      <a href="https://www.instagram.com/julia.bremerr" target="_blank" class="social-link instagram">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        Instagram
-      </a>
-      <a href="https://www.linkedin.com/in/ajuliabremer" target="_blank" class="social-link linkedin">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
+<div id="pessoais" class="sec">
+  <div class="si">
+    <button class="bb" onclick="bk()">← Voltar</button>
+    <div class="sb">Para Você</div>
+    <h2 class="st">Você merece ter<br/>clareza com o dinheiro</h2>
+    <div class="db"><p>Sabe aquela sensação de trabalhar muito, ver o dinheiro entrar... e mesmo assim <strong>nunca sobrar?</strong> De chegar no fim do mês sem entender para onde foi tudo? De querer investir mas não saber por onde começar?<br/><br/>Você não está sozinha. <strong>E isso tem solução.</strong></p></div>
+    <p class="ss">Meu método une organização, consciência e estratégia para que o dinheiro pare de ser fonte de ansiedade e vire ferramenta de liberdade.</p>
+    <div class="svg">
+      <a href="https://www.instagram.com/julia.bremerr" target="_blank" class="sc"><div class="scb">Planejamento</div><h3>Organize sua vida financeira</h3><p>Saia do caos, quite dívidas e tenha um plano que funciona na vida real.</p><div class="sa">QUERO ME INSCREVER →</div></a>
+      <a href="https://www.instagram.com/julia.bremerr" target="_blank" class="sc"><div class="scb">Investimentos</div><h3>Cuide da sua carteira</h3><p>Faça seu dinheiro trabalhar com estratégia, segurança e rentabilidade real.</p><div class="sa">QUERO ME INSCREVER →</div></a>
+      <div class="sc" style="cursor:default;opacity:.6"><div class="scb">Em Breve</div><h3>Aprenda a Investir em 3 Dias</h3><p>O programa que vai mudar sua relação com o dinheiro para sempre.</p><div class="sa">EM BREVE</div></div>
     </div>
   </div>
 </div>
 
-<div id="pessoais" class="section">
-  <div class="section-inner">
-    <button class="back-btn" onclick="goHome()">← Voltar</button>
-    <div class="section-badge">Para Você</div>
-    <h2 class="section-title">Você merece ter<br/>clareza com o dinheiro</h2>
-    <div class="dor-box">
-      <p>Sabe aquela sensação de trabalhar muito, ver o dinheiro entrar... e mesmo assim <strong>nunca sobrar?</strong> De chegar no fim do mês sem entender para onde foi tudo? De querer investir mas não saber por onde começar?<br/><br/>Você não está sozinha. <strong>E isso tem solução.</strong></p>
-    </div>
-    <p class="section-subtitle">Meu método une organização, consciência e estratégia para que o dinheiro pare de ser fonte de ansiedade e vire ferramenta de liberdade.</p>
-    <div class="servicos-grid">
-      <a href="https://www.instagram.com/julia.bremerr" target="_blank" class="servico-card">
-        <div class="servico-badge">Planejamento</div>
-        <h3>Organize sua vida financeira</h3>
-        <p>Saia do caos, quite dívidas e tenha um plano que funciona na vida real.</p>
-        <div class="servico-arrow">QUERO ME INSCREVER →</div>
-      </a>
-      <a href="https://www.instagram.com/julia.bremerr" target="_blank" class="servico-card">
-        <div class="servico-badge">Investimentos</div>
-        <h3>Cuide da sua carteira</h3>
-        <p>Faça seu dinheiro trabalhar com estratégia, segurança e rentabilidade real.</p>
-        <div class="servico-arrow">QUERO ME INSCREVER →</div>
-      </a>
-      <div class="servico-card" style="cursor:default; opacity:0.6;">
-        <div class="servico-badge">Em Breve</div>
-        <h3>Aprenda a Investir em 3 Dias</h3>
-        <p>O programa que vai mudar sua relação com o dinheiro para sempre.</p>
-        <div class="servico-arrow">EM BREVE</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="empresariais" class="section">
-  <div class="section-inner">
-    <button class="back-btn" onclick="goHome()">← Voltar</button>
-    <div class="section-badge blue">Para sua Empresa</div>
-    <h2 class="section-title">Seu negócio fatura.<br/>Mas sobra dinheiro?</h2>
-    <div class="dor-box blue">
-      <p>Muitos empresários chegam até mim com o mesmo relato: a empresa vende bem, mas no fim do mês <strong>não sobra nada.</strong> O caixa é um mistério. Os sócios não sabem separar pessoa física de jurídica. As decisões financeiras são tomadas no feeling.<br/><br/>Isso não é falta de talento, <strong>é falta de estrutura.</strong> E é exatamente aí que eu entro.</p>
-    </div>
-    <div class="raia-box">
-      <div class="raia-title">RAIA</div>
-      <div class="raia-divider"></div>
+<div id="empresariais" class="sec">
+  <div class="si">
+    <button class="bb" onclick="bk()">← Voltar</button>
+    <div class="sb bl">Para sua Empresa</div>
+    <h2 class="st">Seu negócio fatura.<br/>Mas sobra dinheiro?</h2>
+    <div class="db bl"><p>Muitos empresários chegam até mim com o mesmo relato: a empresa vende bem, mas no fim do mês <strong>não sobra nada.</strong> O caixa é um mistério. Os sócios não sabem separar pessoa física de jurídica. As decisões financeiras são tomadas no feeling.<br/><br/>Isso não é falta de talento, <strong>é falta de estrutura.</strong> E é exatamente aí que eu entro.</p></div>
+    <div class="rb">
+      <div class="rt">RAIA</div><div class="rd"></div>
       <p>A RAIA nasceu da minha experiência com empresas que faturavam bem mas sangravam por dentro. Uma metodologia financeira criada para dar estrutura, previsibilidade e crescimento real ao seu negócio.</p>
-      <div class="raia-btns">
-        <a href="https://cfo-landing-indol.vercel.app/" target="_blank" class="btn-raia">CONHECER A RAIA →</a>
-        <a href="https://www.instagram.com/raiacfodigital" target="_blank" class="btn-ghost-raia">@raiacfodigital</a>
-      </div>
+      <div class="rbs"><a href="https://cfo-landing-indol.vercel.app/" target="_blank" class="br">CONHECER A RAIA →</a><a href="https://www.instagram.com/raiacfodigital" target="_blank" class="bg">@raiacfodigital</a></div>
     </div>
   </div>
 </div>
 
-<div id="palestras" class="section">
-  <div class="section-inner">
-    <button class="back-btn" onclick="goHome()">← Voltar</button>
-    <div class="section-badge">Palestras & Aulas</div>
-    <h2 class="section-title">Educação financeira<br/>que transforma plateias</h2>
-    <p class="section-subtitle">De empresas a universidades, levo uma abordagem prática, humana e impactante sobre finanças para quem quer aprender de verdade.</p>
-    <div class="palestras-grid">
-      <div class="palestra-photo"><img src="palestra1.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
-      <div class="palestra-photo"><img src="palestra2.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
-      <div class="palestra-photo"><img src="palestra3.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
-      <div class="palestra-photo"><img src="palestra4.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
-      <div class="palestra-photo"><img src="palestra5.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
-      <div class="palestra-photo"><img src="palestra6.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
+<div id="palestras" class="sec">
+  <div class="si">
+    <button class="bb" onclick="bk()">← Voltar</button>
+    <div class="sb">Palestras & Aulas</div>
+    <h2 class="st">Educação financeira<br/>que transforma plateias</h2>
+    <p class="ss">De empresas a universidades, levo uma abordagem prática, humana e impactante sobre finanças para quem quer aprender de verdade.</p>
+    <div class="pg">
+      <div class="pp"><img src="palestra1.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
+      <div class="pp"><img src="palestra2.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
+      <div class="pp"><img src="palestra3.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
+      <div class="pp"><img src="palestra4.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
+      <div class="pp"><img src="palestra5.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
+      <div class="pp"><img src="palestra6.jpg" alt="" onerror="this.parentElement.innerHTML='📸'"/></div>
     </div>
-    <div class="contato-box">
+    <div class="cx">
       <h3>Vamos levar isso<br/>para o seu evento?</h3>
       <p>Entre em contato e vamos conversar sobre como posso contribuir com a sua empresa, evento ou instituição.</p>
-      <a href="mailto:ana.a.juliabremer@gmail.com" class="email-link">ana.a.juliabremer@gmail.com</a>
-      <div class="contato-socials">
-        <a href="https://www.instagram.com/julia.bremerr" target="_blank" class="social-link instagram">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          Instagram
-        </a>
-        <a href="https://www.linkedin.com/in/ajuliabremer" target="_blank" class="social-link linkedin">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
+      <a href="mailto:ana.a.juliabremer@gmail.com" class="el">ana.a.juliabremer@gmail.com</a>
+      <div class="cs">
+        <a href="https://www.instagram.com/julia.bremerr" target="_blank" class="sla ig"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
+        <a href="https://www.linkedin.com/in/ajuliabremer" target="_blank" class="sla li"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-function showSection(id) {
-  document.getElementById('home').style.display = 'none';
-  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+var L=["Minha primeira palestra","Primeira rodada de negócios","Maior evento de finanças do Brasil",'Palestra sobre "Como cuidar do dinheiro e dos nossos sonhos"',"Evento como mentora financeira de outros empresários"],
+S=["foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg","foto5.jpg"],
+N=5,cur=0,iv=null;
+
+function render(){
+  var g=document.getElementById('gg'),t=document.getElementById('gtl'),cn=document.getElementById('cnt');
+  if(!g)return;
+  // 3 cards visíveis
+  var h='';
+  for(var i=0;i<3;i++){
+    var idx=(cur+i)%N,act=i===0?' act':'';
+    h+='<div class="gi'+act+'" onclick="tap('+i+')"><img src="'+S[idx]+'" alt="'+L[idx]+'" onerror="this.outerHTML=\'<div class=gip>📸</div>\'"/><div class="gic"><span class="gic-n">0'+(idx+1)+'</span><span class="gic-t">'+L[idx]+'</span></div></div>';
+  }
+  g.innerHTML=h;
+  // timeline dots
+  var d='';
+  for(var i=0;i<N;i++){
+    if(i>0) d+='<div class="gtl-line'+(i<=cur?' done':'')+'"></div>';
+    d+='<div class="gtl-dot'+(i===cur?' act':'')+'" onclick="jump('+i+')"></div>';
+  }
+  t.innerHTML=d;
+  cn.textContent='0'+(cur+1)+' / 0'+N;
+}
+
+function mv(d){cur=(cur+d+N)%N;render();rst()}
+function jump(i){cur=i;render();rst()}
+function tap(i){cur=(cur+i)%N;render();rst()}
+
+function start(){stop();cur=0;render();iv=setInterval(function(){cur=(cur+1)%N;render()},4000)}
+function stop(){if(iv){clearInterval(iv);iv=null}}
+function rst(){stop();iv=setInterval(function(){cur=(cur+1)%N;render()},4000)}
+
+function go(id){
+  document.getElementById('home').style.display='none';
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active')});
   document.getElementById(id).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (id === 'historia') {
-    setTimeout(function() {
-      document.querySelectorAll('.timeline-item').forEach(function(el, i) {
-        setTimeout(function() { el.classList.add('visible'); }, i * 300);
-      });
-    }, 200);
-    startCarousel();
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='historia'){
+    setTimeout(function(){document.querySelectorAll('.ti').forEach(function(e,i){setTimeout(function(){e.classList.add('v')},i*300)})},200);
+    start();
   }
 }
-
-function goHome() {
-  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
-  document.getElementById('home').style.display = 'flex';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  stopCarousel();
-}
-
-var fotoAtiva = 0;
-var totalFotos = 5;
-var carouselInterval = null;
-var legendas = ["Minha primeira palestra","Primeira rodada de negócios","Maior evento de financas do Brasil","Palestra sobre dinheiro e sonhos","Mentora financeira de empresarios"];
-var srcs = ["foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg","foto5.jpg"];
-
-function updateGaleria() {
-  var items = document.querySelectorAll('.galeria-item');
-  var dots = document.querySelectorAll('.galeria-dot');
-  if (!items.length) return;
-  for (var slot = 0; slot < 4; slot++) {
-    var fotoIndex = (fotoAtiva + slot) % totalFotos;
-    var item = items[slot];
-    var img = item.querySelector('img');
-    var caption = item.querySelector('.galeria-item-caption span');
-    if (img) img.src = srcs[fotoIndex];
-    if (caption) caption.textContent = legendas[fotoIndex];
-    item.classList.toggle('ativo', slot === 0);
-  }
-  dots.forEach(function(dot, i) { dot.classList.toggle('ativo', i === fotoAtiva); });
-}
-
-function startCarousel() {
-  stopCarousel();
-  fotoAtiva = 0;
-  updateGaleria();
-  carouselInterval = setInterval(function() {
-    fotoAtiva = (fotoAtiva + 1) % totalFotos;
-    updateGaleria();
-  }, 4000);
-}
-
-function stopCarousel() {
-  if (carouselInterval) { clearInterval(carouselInterval); carouselInterval = null; }
-}
-
-function setFotoAtiva(slotIndex) {
-  fotoAtiva = (fotoAtiva + slotIndex) % totalFotos;
-  updateGaleria();
-  stopCarousel();
-  carouselInterval = setInterval(function() {
-    fotoAtiva = (fotoAtiva + 1) % totalFotos;
-    updateGaleria();
-  }, 4000);
+function bk(){
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active')});
+  document.getElementById('home').style.display='flex';
+  window.scrollTo({top:0,behavior:'smooth'});stop();
 }
 </script>
 </body>
