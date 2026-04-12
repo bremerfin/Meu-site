@@ -10,7 +10,7 @@
     :root{--y:#E8DDB5;--yh:#d9cc9e;--d:#111;--rb:#0B1F4B;--rbh:#0d2660;--g:#888}
     body{font-family:'Inter',sans-serif;background:#fff;color:var(--d);overflow-x:hidden}
     #home{min-height:100vh;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px 40px}
-    .ha{width:96px;height:96px;border-radius:50%;border:3px solid #e0e0e0;object-fit:cover;object-position:center;margin-bottom:20px;background:#f0f0f0}
+    .ha{width:96px;height:96px;border-radius:50%;border:3px solid #e0e0e0;object-fit:cover;object-position:center top;margin-bottom:20px;background:#f0f0f0}
     .hn{font-size:2.8rem;font-weight:800;color:var(--d);margin-bottom:16px;letter-spacing:-1px}
     .hp{font-size:1.05rem;color:#555;max-width:480px;line-height:1.75;margin-bottom:52px}
     .cg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:860px;width:100%;padding:0 16px}
@@ -68,7 +68,7 @@
     .gg{display:flex;gap:12px;overflow:hidden}
     .gi{position:relative;border-radius:14px;overflow:hidden;background:#f2f2f2;transition:all .6s cubic-bezier(.25,1,.5,1);opacity:.5;transform:scale(.93)}
     .gi.act{opacity:1;transform:scale(1);box-shadow:0 16px 40px rgba(0,0,0,.15)}
-    .gi img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;transition:transform .5s}
+    .gi img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;display:block;transition:transform .5s}
     .gi.act img{transform:scale(1.03)}
     .gip{width:100%;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:1.5rem}
     .gic{position:absolute;bottom:0;left:0;right:0;padding:28px 14px 14px;background:linear-gradient(to top,rgba(0,0,0,.7),transparent)}
@@ -222,23 +222,25 @@
 </div>
 
 <script>
-var L=["Minha primeira palestra","Primeira rodada de negócios","Maior evento de finanças do Brasil",'Palestra sobre "Como cuidar do dinheiro e dos nossos sonhos"',"Evento como mentora financeira de outros empresários"],
-P=["center top","center top","center top","center top","left top"],
+var L=['Minha primeira palestra "Renda fixa: Cresça seu dinheiro com inteligência"',"Primeira rodada de negócios","Maior evento de finanças do Brasil",'Palestra sobre "Como cuidar do dinheiro e dos nossos sonhos"',"Evento como mentora financeira de outros empresários"],
 S=["foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg","foto5.jpg"],
 N=5,cur=0,iv=null;
+
+function getShow(){return window.innerWidth<=620?2:3}
 
 function render(){
   var g=document.getElementById('gg'),cn=document.getElementById('cnt');
   if(!g)return;
-  var show=2,h='';
+  var show=getShow(),h='',pct=show===2?'50%':'33.333%',gap=show===2?6:8;
   for(var i=0;i<show;i++){
     var idx=(cur+i)%N,act=i===0?' act':'';
-    h+='<div class="gi'+act+'" style="flex:0 0 calc(50% - 6px)"><img src="'+S[idx]+'" alt="'+L[idx]+'" style="object-position:'+P[idx]+'" onerror="this.outerHTML=\'<div class=gip>📸</div>\'"/><div class="gic"><span class="gic-n">0'+(idx+1)+'</span><span class="gic-t">'+L[idx]+'</span></div></div>';
+    h+='<div class="gi'+act+'" style="flex:0 0 calc('+pct+' - '+gap+'px)"><img src="'+S[idx]+'" alt="'+L[idx]+'" onerror="this.outerHTML=\'<div class=gip>📸</div>\'"/><div class="gic"><span class="gic-n">0'+(idx+1)+'</span><span class="gic-t">'+L[idx]+'</span></div></div>';
   }
   g.innerHTML=h;
   cn.textContent='0'+(cur+1)+' / 0'+N;
 }
 
+window.addEventListener('resize',function(){render()});
 function mv(d){cur=(cur+d+N)%N;render();rst()}
 function start(){stop();cur=0;render();iv=setInterval(function(){cur=(cur+1)%N;render()},5000)}
 function stop(){if(iv){clearInterval(iv);iv=null}}
