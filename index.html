@@ -11,10 +11,10 @@
     body{font-family:'Inter',sans-serif;background:#fff;color:var(--d);overflow-x:hidden}
 
     #home{min-height:100vh;background:#fff;display:flex;flex-direction:column;align-items:center;padding:60px 20px 50px}
-    .h-name{font-size:.85rem;font-weight:400;color:#999;letter-spacing:2px;margin-bottom:40px;text-transform:uppercase}
-    .h-hero{text-align:center;max-width:600px;margin-bottom:56px}
-    .h-hero h1{font-size:2.4rem;font-weight:800;color:var(--d);line-height:1.2;letter-spacing:-1px}
-    .h-hero h1 span{display:inline;background:linear-gradient(to top,rgba(232,221,181,.5) 0%,rgba(232,221,181,.5) 35%,transparent 35%);padding:0 4px}
+    .h-name{font-size:.82rem;font-weight:400;color:#aaa;letter-spacing:2.5px;margin-bottom:32px;text-transform:uppercase}
+    .h-hero{text-align:center;max-width:520px;margin-bottom:52px}
+    .h-hero p{font-size:1.15rem;font-weight:400;color:#666;line-height:1.75;letter-spacing:-.2px}
+    .h-hero p span{background:linear-gradient(to top,rgba(232,221,181,.45) 0%,rgba(232,221,181,.45) 35%,transparent 35%);padding:0 3px}
 
     .cg{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:960px;width:100%;padding:0 12px}
     .c{position:relative;border-radius:18px;overflow:hidden;cursor:pointer;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;background:#111;transition:transform .3s}
@@ -119,9 +119,9 @@
     .cs{display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap}
 
     @media(max-width:620px){
-      .h-hero h1{font-size:1.7rem;letter-spacing:-.5px}
-      .h-hero{margin-bottom:40px}
-      .h-name{font-size:.75rem;margin-bottom:28px}
+      .h-hero p{font-size:.95rem}
+      .h-hero{margin-bottom:36px}
+      .h-name{font-size:.72rem;margin-bottom:24px}
       .cg{grid-template-columns:1fr;gap:12px;padding:0 8px}
       .c{min-height:260px}
       .ct{font-size:1.3rem}
@@ -138,7 +138,7 @@
 <div id="home">
   <div class="h-name">Ana Júlia Bremer</div>
   <div class="h-hero">
-    <h1>Dinheiro não precisa ser complicado — nem na sua vida, nem no seu <span>negócio.</span></h1>
+    <p>Dinheiro não precisa ser complicado —<br/>nem na sua vida, nem no seu <span>negócio.</span></p>
   </div>
   <div class="cg">
     <div class="c" onclick="go('historia')"><div class="cb" style="background-image:url('foto6.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Conheça</div><div class="ct">Minha História</div><div class="cd">Quem é Ana Júlia Bremer e o que me trouxe até aqui.</div><div class="cbtn">VER MAIS →</div></div></div>
