@@ -4,31 +4,27 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ana Júlia Bremer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{--y:#E8DDB5;--yh:#d9cc9e;--d:#111;--rb:#0B1F4B;--rbh:#0d2660;--g:#888}
     body{font-family:'Inter',sans-serif;background:#fff;color:var(--d);overflow-x:hidden}
-
-    #home{min-height:100vh;background:#fff;display:flex;flex-direction:column;align-items:center;padding:60px 20px 50px}
-    .h-name{font-size:.82rem;font-weight:400;color:#aaa;letter-spacing:2.5px;margin-bottom:32px;text-transform:uppercase}
-    .h-hero{text-align:center;max-width:520px;margin-bottom:52px}
-    .h-hero p{font-size:1.15rem;font-weight:400;color:#666;line-height:1.75;letter-spacing:-.2px}
-    .h-hero p span{background:linear-gradient(to top,rgba(232,221,181,.45) 0%,rgba(232,221,181,.45) 35%,transparent 35%);padding:0 3px}
-
-    .cg{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:960px;width:100%;padding:0 12px}
-    .c{position:relative;border-radius:18px;overflow:hidden;cursor:pointer;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;background:#111;transition:transform .3s}
-    .c:hover{transform:scale(1.015)}
-    .cb{position:absolute;inset:0;background-size:cover;background-position:center top;opacity:.85;transition:opacity .4s}
-    .c:hover .cb{opacity:.75}
-    .co{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,.25) 45%,rgba(0,0,0,.7) 65%,rgba(0,0,0,.93) 100%)}
-    .cc{position:relative;z-index:2;padding:24px}
-    .bd{display:inline-block;border:1.5px solid rgba(255,255,255,.4);color:rgba(255,255,255,.85);font-size:.62rem;font-weight:500;letter-spacing:.5px;padding:4px 14px;border-radius:30px;margin-bottom:14px}
-    .ct{font-size:1.5rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:8px;letter-spacing:-.5px}
-    .cd{font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.65;margin-bottom:20px}
-    .cbtn{display:block;width:100%;background:var(--y);color:var(--d);border:none;border-radius:30px;padding:13px 20px;font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif;text-decoration:none}
+    #home{min-height:100vh;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px 40px}
+    .ha{width:96px;height:96px;border-radius:50%;border:3px solid #e0e0e0;object-fit:cover;object-position:center top;margin-bottom:20px;background:#f0f0f0}
+    .hn{font-size:2.8rem;font-weight:800;color:var(--d);margin-bottom:16px;letter-spacing:-1px}
+    .hp{font-size:1.05rem;color:#555;max-width:480px;line-height:1.75;margin-bottom:52px}
+    .cg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:860px;width:100%;padding:0 16px}
+    .c{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;background:#111;transition:transform .3s}
+    .c:hover{transform:scale(1.02)}
+    .cb{position:absolute;inset:0;background-size:cover;background-position:center top;opacity:.55;transition:opacity .3s}
+    .c:hover .cb{opacity:.42}
+    .co{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.7) 55%,rgba(0,0,0,.92))}
+    .cc{position:relative;z-index:2;padding:22px}
+    .bd{display:inline-block;border:1.5px solid rgba(255,255,255,.55);color:#fff;font-size:.67rem;font-weight:600;letter-spacing:.5px;padding:4px 12px;border-radius:30px;margin-bottom:12px}
+    .ct{font-size:1.55rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:8px;letter-spacing:-.5px}
+    .cd{font-size:.8rem;color:rgba(255,255,255,.72);line-height:1.6;margin-bottom:18px}
+    .cbtn{display:block;width:100%;background:var(--y);color:var(--d);border:none;border-radius:30px;padding:12px 20px;font-size:.7rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-align:center;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif;text-decoration:none}
     .cbtn:hover{background:var(--yh);transform:translateY(-1px)}
-
     .sec{display:none;min-height:100vh;padding:70px 20px;background:#fff;animation:fi .4s ease}
     .sec.active{display:block}
     @keyframes fi{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -62,7 +58,7 @@
     .tt{font-size:.92rem;color:#666;line-height:1.85}
     .tt strong{color:var(--d);font-weight:700}
     .thl{display:inline;background:linear-gradient(to top,rgba(232,221,181,.35) 0%,rgba(232,221,181,.35) 40%,transparent 40%)}
-
+    /* GALERIA */
     .gs{margin-bottom:48px}
     .gh{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
     .gl{font-size:.65rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#ccc}
@@ -71,15 +67,14 @@
     .ab{width:34px;height:34px;border-radius:50%;border:1.5px solid #e0e0e0;background:#fff;color:var(--d);font-size:.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;font-family:'Inter',sans-serif}
     .ab:hover{background:var(--d);color:#fff;border-color:var(--d)}
     .gg{display:flex;gap:12px;overflow:hidden}
-    .gi{position:relative;border-radius:14px;overflow:hidden;background:#f2f2f2;transition:all .6s cubic-bezier(.25,1,.5,1);opacity:.5;transform:scale(.94)}
-    .gi.act{opacity:1;transform:scale(1) translateY(-8px);box-shadow:0 20px 48px rgba(0,0,0,.16)}
-    .gi img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;display:block;transition:transform .5s}
+    .gi{flex:0 0 calc(33.333% - 8px);position:relative;border-radius:14px;overflow:hidden;background:#f2f2f2;transition:all .6s cubic-bezier(.25,1,.5,1);opacity:.5;transform:scale(.93)}
+    .gi.act{opacity:1;transform:scale(1);box-shadow:0 16px 40px rgba(0,0,0,.15)}
+    .gi img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;transition:transform .5s}
     .gi.act img{transform:scale(1.03)}
     .gip{width:100%;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:1.5rem}
     .gic{position:absolute;bottom:0;left:0;right:0;padding:28px 14px 14px;background:linear-gradient(to top,rgba(0,0,0,.7),transparent)}
     .gic-n{font-size:.55rem;font-weight:800;color:var(--y);letter-spacing:2px;margin-bottom:3px;display:block}
     .gic-t{font-size:.72rem;font-weight:600;color:#fff;line-height:1.4;display:block}
-
     .sl{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
     .sla{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:8px;text-decoration:none;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;transition:all .25s;font-family:'Inter',sans-serif}
     .sla svg{width:16px;height:16px;flex-shrink:0}
@@ -117,34 +112,27 @@
     .el{font-size:1.1rem;font-weight:700;color:var(--y);text-decoration:none;border-bottom:2px solid var(--y);padding-bottom:2px;transition:opacity .25s}
     .el:hover{opacity:.6}
     .cs{display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap}
-
     @media(max-width:620px){
-      .h-hero p{font-size:.95rem}
-      .h-hero{margin-bottom:36px}
-      .h-name{font-size:.72rem;margin-bottom:24px}
-      .cg{grid-template-columns:1fr;gap:12px;padding:0 8px}
-      .c{min-height:260px}
-      .ct{font-size:1.3rem}
-      .st{font-size:1.9rem}
+      .cg{grid-template-columns:1fr}.hn{font-size:2rem}.st{font-size:1.9rem}
       .pg{grid-template-columns:repeat(2,1fr)}.rb{padding:44px 24px}
       .rt{font-size:2.8rem;letter-spacing:12px}.cx{padding:36px 20px}
-      .sl{flex-direction:column}.hh{padding:36px 24px}
+      .c{min-height:240px}.sl{flex-direction:column}.hh{padding:36px 24px}
       .hht{font-size:1.1rem}.tc{padding:22px 20px 20px}
+      .gi{flex:0 0 calc(50% - 6px)}
     }
   </style>
 </head>
 <body>
 
 <div id="home">
-  <div class="h-name">Ana Júlia Bremer</div>
-  <div class="h-hero">
-    <p>Dinheiro não precisa ser complicado —<br/>nem na sua vida, nem no seu <span>negócio.</span></p>
-  </div>
+  <img class="ha" src="foto6.jpg" alt="Ana Júlia Bremer"/>
+  <h1 class="hn">Ana Júlia Bremer</h1>
+  <p class="hp">Dinheiro não precisa ser complicado —<br/>nem na sua vida, nem no seu negócio.</p>
   <div class="cg">
-    <div class="c" onclick="go('historia')"><div class="cb" style="background-image:url('foto6.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Conheça</div><div class="ct">Minha História</div><div class="cd">Quem é Ana Júlia Bremer e o que me trouxe até aqui.</div><div class="cbtn">VER MAIS →</div></div></div>
-    <div class="c" onclick="go('pessoais')"><div class="cb" style="background-image:url('foto7.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Para você</div><div class="ct">Finanças Pessoais</div><div class="cd">Planejamento, investimentos e o seu caminho para a liberdade financeira.</div><div class="cbtn">QUERO SABER MAIS →</div></div></div>
-    <div class="c" onclick="go('empresariais')"><div class="cb" style="background-image:url('foto8.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Para sua empresa</div><div class="ct">Finanças Empresariais</div><div class="cd">Estrutura financeira sólida para negócios que querem crescer de verdade.</div><div class="cbtn">CONHECER A RAIA →</div></div></div>
-    <div class="c" onclick="go('palestras')"><div class="cb" style="background-image:url('foto9.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Conteúdo</div><div class="ct">Palestras & Aulas</div><div class="cd">Leve educação financeira de impacto para o seu evento ou equipe.</div><div class="cbtn">QUERO CONTRATAR →</div></div></div>
+    <div class="c" onclick="go('historia')"><div class="cb" style="background-image:url('foto-historia.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Conheça</div><div class="ct">Minha História</div><div class="cd">Quem é Ana Júlia Bremer e o que me trouxe até aqui.</div><div class="cbtn">VER MAIS →</div></div></div>
+    <div class="c" onclick="go('pessoais')"><div class="cb" style="background-image:url('foto-pessoal.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Para você</div><div class="ct">Finanças Pessoais</div><div class="cd">Planejamento, investimentos e o seu caminho para a liberdade financeira.</div><div class="cbtn">QUERO SABER MAIS →</div></div></div>
+    <div class="c" onclick="go('empresariais')"><div class="cb" style="background-image:url('foto-empresarial.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Para sua empresa</div><div class="ct">Finanças Empresariais</div><div class="cd">Estrutura financeira sólida para negócios que querem crescer de verdade.</div><div class="cbtn">CONHECER A RAIA →</div></div></div>
+    <div class="c" onclick="go('palestras')"><div class="cb" style="background-image:url('foto-palestra.jpg')"></div><div class="co"></div><div class="cc"><div class="bd">Conteúdo</div><div class="ct">Palestras & Aulas</div><div class="cd">Leve educação financeira de impacto para o seu evento ou equipe.</div><div class="cbtn">QUERO CONTRATAR →</div></div></div>
   </div>
 </div>
 
@@ -162,6 +150,7 @@
       <div class="ti"><div class="td"><div class="tdi"></div></div><div class="tc"><div class="tn">02</div><div class="ty">A virada</div><div class="tt">Comecei a trabalhar cedo, vendi doce na rua, cuidei do Instagram de empresas, estagiei numa contabilidade. Cada centavo que entrava, <strong>70% ia direto para educação:</strong> cursos, livros, aulas.<br/><br/>Fui percebendo que saber sobre dinheiro não era só para quem quer ficar rico, é sobre <strong><span class="thl">quem quer viver bem.</span></strong> Aí comecei a querer ensinar sobre dinheiro para todo mundo. E foi assim que minha escola da época me chamou para dar aula de finanças para os alunos do ensino médio. E foi aí que as coisas começaram a acontecer.</div></div></div>
       <div class="ti"><div class="td"><div class="tdi"></div></div><div class="tc"><div class="tn">03</div><div class="ty">Hoje</div><div class="tt">Hoje cuido das finanças de pessoas e empresas, e dou aulas e palestras por aí. Tudo com uma ideia só: <strong><span class="thl">dinheiro não precisa ser complicado.</span></strong><br/><br/>Sem siglas que ninguém entende, sem economês, sem fórmula mágica. Do planejamento pessoal até o financeiro de uma empresa, a proposta é a mesma: <strong>ser simples.</strong></div></div></div>
     </div>
+
     <div class="gs">
       <div class="gh">
         <span class="gl">Momentos</span>
@@ -173,6 +162,7 @@
       </div>
       <div class="gg" id="gg"></div>
     </div>
+
     <div class="sl">
       <a href="https://www.instagram.com/julia.bremerr" target="_blank" class="sla ig"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
       <a href="https://www.linkedin.com/in/ajuliabremer" target="_blank" class="sla li"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
@@ -236,25 +226,24 @@
 </div>
 
 <script>
-var L=['Minha primeira palestra "Renda fixa: Cresça seu dinheiro com inteligência"',"Primeira rodada de negócios","Maior evento de finanças do Brasil",'Palestra sobre "Como cuidar do dinheiro e dos nossos sonhos"',"Evento como mentora financeira de outros empresários"],
+var L=["Minha primeira palestra","Primeira rodada de negócios","Maior evento de finanças do Brasil",'Palestra sobre "Como cuidar do dinheiro e dos nossos sonhos"',"Evento como mentora financeira de outros empresários"],
+P=["center top","center top","center top","center top","right top"],
 S=["foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg","foto5.jpg"],
-N=5,cur=0,iv=null;
-
-function getShow(){return window.innerWidth<=620?2:3}
+N=5,cur=0,iv=null,isMob=window.innerWidth<=620;
+window.addEventListener('resize',function(){isMob=window.innerWidth<=620;render()});
 
 function render(){
   var g=document.getElementById('gg'),cn=document.getElementById('cnt');
   if(!g)return;
-  var show=getShow(),h='',pct=show===2?'50%':'33.333%',gap=show===2?6:8;
+  var show=isMob?2:3,h='';
   for(var i=0;i<show;i++){
     var idx=(cur+i)%N,act=i===0?' act':'';
-    h+='<div class="gi'+act+'" style="flex:0 0 calc('+pct+' - '+gap+'px)"><img src="'+S[idx]+'" alt="'+L[idx]+'" onerror="this.outerHTML=\'<div class=gip>📸</div>\'"/><div class="gic"><span class="gic-n">0'+(idx+1)+'</span><span class="gic-t">'+L[idx]+'</span></div></div>';
+    h+='<div class="gi'+act+'" style="flex:0 0 calc('+(100/show)+'% - '+(show>2?8:6)+'px)"><img src="'+S[idx]+'" alt="'+L[idx]+'" style="object-position:'+P[idx]+'" onerror="this.outerHTML=\'<div class=gip>📸</div>\'"/><div class="gic"><span class="gic-n">0'+(idx+1)+'</span><span class="gic-t">'+L[idx]+'</span></div></div>';
   }
   g.innerHTML=h;
   cn.textContent='0'+(cur+1)+' / 0'+N;
 }
 
-window.addEventListener('resize',function(){render()});
 function mv(d){cur=(cur+d+N)%N;render();rst()}
 function start(){stop();cur=0;render();iv=setInterval(function(){cur=(cur+1)%N;render()},5000)}
 function stop(){if(iv){clearInterval(iv);iv=null}}
