@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ana Julia Bremer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="home">
+
+  <img
+    class="hero-avatar"
+    src="sua-foto.jpg"
+    alt="Ana Julia Bremer"
+    onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';"
+  />
+  <div id="avatar-fallback" style="
+    display:none; width:96px; height:96px; border-radius:50%;
+    border:3px solid #e0e0e0; background:#f0f0f0;
+    align-items:center; justify-content:center;
+    font-size:36px; margin-bottom:20px;
+  ">🤍</div>
+
+  <h1 class="hero-name">Ana Julia Bremer</h1>
+  <p class="hero-phrase">
+    Dinheiro não precisa ser complicado —<br/>
+    nem na sua vida, nem no seu negócio.
+  </p>
+
+  <div class="cards-grid">
+    <div class="card" onclick="showSection('historia')">
+      <div class="card-bg" style="background-image: url('sua-foto-historia.jpg');"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="badge">Conheça</div>
+        <div class="card-title">Minha História</div>
+        <div class="card-desc">Quem é Ana Julia Bremer e o que me trouxe até aqui.</div>
+        <div class="card-btn">VER MAIS →</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="showSection('pessoais')">
+      <div class="card-bg" style="background-image: url('sua-foto-pessoal.jpg');"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="badge">Para você</div>
+        <div class="card-title">Finanças Pessoais</div>
+        <div class="card-desc">Planejamento, investimentos e o seu caminho para a liberdade financeira.</div>
+        <div class="card-btn">QUERO SABER MAIS →</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="showSection('empresariais')">
+      <div class="card-bg" style="background-image: url('sua-foto-empresarial.jpg');"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="badge">Para sua empresa</div>
+        <div class="card-title">Finanças Empresariais</div>
+        <div class="card-desc">Estrutura financeira sólida para negócios que querem crescer de verdade.</div>
+        <div class="card-btn">CONHECER A RAIA →</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="showSection('palestras')">
+      <div class="card-bg" style="background-image: url('sua-foto-palestra.jpg');"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="badge">Conteúdo</div>
+        <div class="card-title">Palestras & Aulas</div>
+        <div class="card-desc">Leve educação financeira de impacto para o seu evento ou equipe.</div>
+        <div class="card-btn">QUERO CONTRATAR →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
