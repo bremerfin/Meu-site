@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ana Júlia Bremer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== HOME ===== -->
+<div id="home">
+
+  <img
+    class="hero-avatar"
+    src="sua-foto.jpg"
+    alt="Ana Júlia Bremer"
+    onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';"
+  />
+  <div id="avatar-fallback" style="
+    display:none; width:96px; height:96px; border-radius:50%;
+    border:3px solid #e0e0e0; background:#f0f0f0;
+    align-items:center; justify-content:center;
+    font-size:36px; margin-bottom:20px;
+  ">🤍</div>
+
+  <h1 class="hero-name">Ana Júlia Bremer</h1>
+  <p class="hero-phrase">
+    Dinheiro não precisa ser complicado —<br/>
+    nem na sua vida, nem no seu negócio.
+  </p>
+
+  <div class="cards-grid">
+    <div class="card" onclick="showSection('historia')">
+      <div class="card-bg" style="background-image: url('foto-historia.jpg');"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="badge">Conheça</div>
+        <div class="card-title">Minha História</div>
+        <div class="card-desc">Quem é Ana Júlia Bremer e o que me trouxe até aqui.</div>
+        <div class="card-btn">VER MAIS →</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="showSection('pessoais')">
+      <div class="card-bg" style="background-image: url('foto-pessoal.jpg');"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="badge">Para você</div>
+        <div class="card-title">Finanças Pessoais</div>
+        <div class="card-desc">Planejamento, investimentos e o seu caminho para a liberdade financeira.</div>
+        <div class="card-btn">QUERO SABER MAIS →</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="showSection('empresariais')">
+      <div class="card-bg" style="background-image: url('foto-empresarial.jpg');"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="badge">Para sua empresa</div>
+        <div class="card-title">Finanças Empresariais</div>
+        <div class="card-desc">Estrutura financeira sólida para negócios que querem crescer de verdade.</div>
+        <div class="card-btn">CONHECER A RAIA →</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="showSection('palestras')">
+      <div class="card-bg" style="background-image: url('foto-palestra.jpg');"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="badge">Conteúdo</div>
+        <div class="card-title">Palestras & Aulas</div>
+        <div class="card-desc">Leve educação financeira de impacto para o seu evento ou equipe.</div>
+        <div class="card-btn">QUERO CONTRATAR →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MINHA HISTÓRIA ===== -->
+<div id="historia" class="section">
+  <div class="section-inner">
+    <button class="back-btn" onclick="goHome()">← Voltar</button>
+    <div class="section-badge">Minha História</div>
+    <h2 class="section-title">De onde eu vim e<br/>para onde estou indo</h2>
+
+    <div class="historia-hero">
+      <p class="historia-hero-text">
+        Dinheiro sempre foi sobre <strong>liberdade</strong> pra mim. Quando percebi que poderia ajudar pessoas a alcançarem os seus sonhos dando educação financeira, decidi que <strong>precisava falar sobre isso.</strong>
+      </p>
+      <div class="historia-hero-author">
+        <div class="historia-hero-line"></div>
+        <span class="historia-hero-name">Ana Júlia Bremer</span>
+      </div>
+    </div>
+
+    <div class="historia-timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+        <div class="timeline-card">
+          <div class="timeline-num">01</div>
+          <div class="timeline-year">O começo</div>
+          <div class="timeline-text">
+            Desde criança eu era cheia de sonhos, queria viajar, ter coisas, experimentar tudo. Um dia pedi um videogame para a minha mãe e ela disse que não tinha dinheiro. Mas me disse uma coisa que mudou tudo: <strong><span class="timeline-highlight">"Se você juntar dinheiro, você consegue comprar."</span></strong>
+            <br/><br/>
+            Juntei. Comprei. E nunca mais parei de querer entender como esse tal de dinheiro funcionava.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+        <div class="timeline-card">
+          <div class="timeline-num">02</div>
+          <div class="timeline-year">A virada</div>
+          <div class="timeline-text">
+            Comecei a trabalhar cedo, vendi doce na rua, cuidei do Instagram de empresas, estagiei numa contabilidade. Cada centavo que entrava, <strong>70% ia direto para educação:</strong> cursos, livros, aulas.
+            <br/><br/>
+            Fui percebendo que saber sobre dinheiro não era só para quem quer ficar rico, é sobre <strong><span class="timeline-highlight">quem quer viver bem.</span></strong> Aí comecei a querer ensinar sobre dinheiro para todo mundo. E foi assim que minha escola da época me chamou para dar aula de finanças para os alunos do ensino médio. E foi aí que as coisas começaram a acontecer.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+        <div class="timeline-card">
+          <div class="timeline-num">03</div>
+          <div class="timeline-year">Hoje</div>
+          <div class="timeline-text">
+            Hoje cuido das finanças de pessoas e empresas, e dou aulas e palestras por aí. Tudo com uma ideia só: <strong><span class="timeline-highlight">dinheiro não precisa ser complicado.</span></strong>
+            <br/><br/>
+            Sem siglas que ninguém entende, sem economês, sem fórmula mágica. Do planejamento pessoal até o financeiro de uma empresa, a proposta é a mesma: <strong>ser simples.</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="galeria-section" id="galeriaSection">
+      <div class="galeria-header">
+        <span class="galeria-label">Momentos</span>
+        <div class="galeria-controls">
+          <span class="galeria-counter" id="galeriaCounter">01 / 05</span>
+          <button class="carousel-btn" onclick="changeSlide(-1)" aria-label="Anterior">←</button>
+          <button class="carousel-btn" onclick="changeSlide(1)" aria-label="Próximo">→</button>
+        </div>
+      </div>
+
+      <div class="galeria-viewport">
+        <div class="galeria-track" id="galeriaTrack">
+
+          <div class="galeria-slide">
+            <div class="galeria-slide-img">
+              <img src="foto1.jpg" alt="Minha primeira palestra" onerror="this.parentElement.innerHTML='📸'" />
+            </div>
+            <div class="galeria-slide-caption">
+              <span class="caption-num">01</span>
+              <span class="caption-text">Minha primeira palestra</span>
+            </div>
+          </div>
+
+          <div class="galeria-slide">
+            <div class="galeria-slide-img">
+              <img src="foto2.jpg" alt="Primeira rodada de negócios" onerror="this.parentElement.innerHTML='📸'" />
+            </div>
+            <div class="galeria-slide-caption">
+              <span class="caption-num">02</span>
+              <span class="caption-text">Primeira rodada de negócios</span>
+            </div>
+          </div>
+
+          <div class="galeria-slide">
+            <div class="galeria-slide-img">
+              <img src="foto3.jpg" alt="Primeira vez no maior evento de finanças do Brasil" onerror="this.parentElement.innerHTML='📸'" />
+            </div>
+            <div class="galeria-slide-caption">
+              <span class="caption-num">03</span>
+              <span class="caption-text">Primeira vez no maior evento de finanças do Brasil</span>
+            </div>
+          </div>
+
+          <div class="galeria-slide">
+            <div class="galeria-slide-img">
+              <img src="foto4.jpg" alt="Palestra sobre como cuidar do nosso dinheiro e dos nossos sonhos" onerror="this.parentElement.innerHTML='📸'" />
+            </div>
+            <div class="galeria-slide-caption">
+              <span class="caption-num">04</span>
+              <span class="caption-text">Palestra sobre "Como cuidar do nosso dinheiro e dos nossos sonhos"</span>
+            </div>
+          </div>
+
+          <div class="galeria-slide">
+            <div class="galeria-slide-img">
+              <img src="foto5.jpg" alt="Mentora financeira de empresários" onerror="this.parentElement.innerHTML='📸'" />
+            </div>
+            <div class="galeria-slide-caption">
+              <span class="caption-num">05</span>
+              <span class="caption-text">Mentora financeira de empresários, ao lado de outros especialistas</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="galeria-progress" id="galeriaProgress">
+        <div class="progress-bar active" onclick="goToSlide(0)"><div class="progress-fill"></div></div>
+        <div class="progress-bar" onclick="goToSlide(1)"><div class="progress-fill"></div></div>
+        <div class="progress-bar" onclick="goToSlide(2)"><div class="progress-fill"></div></div>
+        <div class="progress-bar" onclick="goToSlide(3)"><div class="progress-fill"></div></div>
+        <div class="progress-bar" onclick="goToSlide(4)"><div class="progress-fill"></div></div>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/julia.bremerr?igsh=MWw1MjVlZnJ4dzJpdQ%3D%3D&utm_source=qr"
+         target="_blank" class="social-link instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.linkedin.com/in/ajuliabremer?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+         target="_blank" class="social-link linkedin">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FINANÇAS PESSOAIS ===== -->
+<div id="pessoais" class="section">
+  <div class="section-inner">
+    <button class="back-btn" onclick="goHome()">← Voltar</button>
+    <div class="section-badge">Para Você</div>
+    <h2 class="section-title">Você merece ter<br/>clareza com o dinheiro</h2>
+
+    <div class="dor-box">
+      <p>
+        Sabe aquela sensação de trabalhar muito, ver o dinheiro entrar...
+        e mesmo assim <strong>nunca sobrar?</strong> De chegar no fim do mês sem entender
+        para onde foi tudo? De querer investir mas não saber por onde começar?
+        <br/><br/>
+        Você não está sozinha. <strong>E isso tem solução.</strong>
+      </p>
+    </div>
+
+    <p class="section-subtitle">
+      Meu método une organização, consciência e estratégia
+      para que o dinheiro pare de ser fonte de ansiedade e vire ferramenta de liberdade.
+    </p>
+
+    <div class="servicos-grid">
+      <a href="https://www.instagram.com/julia.bremerr?igsh=MWw1MjVlZnJ4dzJpdQ%3D%3D&utm_source=qr"
+         target="_blank" class="servico-card">
+        <div class="servico-badge">Planejamento</div>
+        <h3>Organize sua vida financeira</h3>
+        <p>Saia do caos, quite dívidas e tenha um plano que funciona na vida real.</p>
+        <div class="servico-arrow">QUERO ME INSCREVER →</div>
+      </a>
+      <a href="https://www.instagram.com/julia.bremerr?igsh=MWw1MjVlZnJ4dzJpdQ%3D%3D&utm_source=qr"
+         target="_blank" class="servico-card">
+        <div class="servico-badge">Investimentos</div>
+        <h3>Cuide da sua carteira</h3>
+        <p>Faça seu dinheiro trabalhar com estratégia, segurança e rentabilidade real.</p>
+        <div class="servico-arrow">QUERO ME INSCREVER →</div>
+      </a>
+      <div class="servico-card" style="cursor:default; opacity:0.6;">
+        <div class="servico-badge">Em Breve</div>
+        <h3>Aprenda a Investir em 3 Dias</h3>
+        <p>O programa que vai mudar sua relação com o dinheiro para sempre.</p>
+        <div class="servico-arrow">EM BREVE</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FINANÇAS EMPRESARIAIS ===== -->
+<div id="empresariais" class="section">
+  <div class="section-inner">
+    <button class="back-btn" onclick="goHome()">← Voltar</button>
+    <div class="section-badge blue">Para sua Empresa</div>
+    <h2 class="section-title">Seu negócio fatura.<br/>Mas sobra dinheiro?</h2>
+
+    <div class="dor-box blue">
+      <p>
+        Muitos empresários chegam até mim com o mesmo relato: a empresa vende bem,
+        mas no fim do mês <strong>não sobra nada.</strong> O caixa é um mistério.
+        Os sócios não sabem separar pessoa física de jurídica.
+        As decisões financeiras são tomadas no feeling.
+        <br/><br/>
+        Isso não é falta de talento, <strong>é falta de estrutura.</strong>
+        E é exatamente aí que eu entro.
+      </p>
+    </div>
+
+    <div class="raia-box">
+      <div class="raia-title">RAIA</div>
+      <div class="raia-divider"></div>
+      <p>
+        A RAIA nasceu da minha experiência com empresas que faturavam bem mas sangravam por dentro.
+        Uma metodologia financeira criada para dar estrutura, previsibilidade e crescimento real ao seu negócio.
+      </p>
+      <div class="raia-btns">
+        <a href="https://cfo-landing-indol.vercel.app/?utm_source=ig&utm_medium=social&utm_content=link_in_bio"
+           target="_blank" class="btn-raia">CONHECER A RAIA →</a>
+        <a href="https://www.instagram.com/raiacfodigital?igsh=Z3AxcTQyaTQweGN5"
+           target="_blank" class="btn-ghost-raia">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @raiacfodigital
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PALESTRAS ===== -->
+<div id="palestras" class="section">
+  <div class="section-inner">
+    <button class="back-btn" onclick="goHome()">← Voltar</button>
+    <div class="section-badge">Palestras & Aulas</div>
+    <h2 class="section-title">Educação financeira<br/>que transforma plateias</h2>
+    <p class="section-subtitle">
+      De empresas a universidades, levo uma abordagem prática, humana e impactante
+      sobre finanças para quem quer aprender de verdade.
+    </p>
+
+    <div class="palestras-grid">
+      <div class="palestra-photo"><img src="palestra1.jpg" alt="" onerror="this.parentElement.innerHTML='📸 Foto palestrando'"/></div>
+      <div class="palestra-photo"><img src="palestra2.jpg" alt="" onerror="this.parentElement.innerHTML='📸 Foto palestrando'"/></div>
+      <div class="palestra-photo"><img src="palestra3.jpg" alt="" onerror="this.parentElement.innerHTML='📸 Foto palestrando'"/></div>
+      <div class="palestra-photo"><img src="palestra4.jpg" alt="" onerror="this.parentElement.innerHTML='📸 Foto palestrando'"/></div>
+      <div class="palestra-photo"><img src="palestra5.jpg" alt="" onerror="this.parentElement.innerHTML='📸 Foto palestrando'"/></div>
+      <div class="palestra-photo"><img src="palestra6.jpg" alt="" onerror="this.parentElement.innerHTML='📸 Foto palestrando'"/></div>
+    </div>
+
+    <div class="contato-box">
+      <h3>Vamos levar isso<br/>para o seu evento?</h3>
+      <p>
+        Entre em contato e vamos conversar sobre como posso contribuir
+        com a sua empresa, evento ou instituição.
+      </p>
+      <a href="mailto:ana.a.juliabremer@gmail.com" class="email-link">
+        ana.a.juliabremer@gmail.com
+      </a>
+      <div class="contato-socials">
+        <a href="https://www.instagram.com/julia.bremerr?igsh=MWw1MjVlZnJ4dzJpdQ%3D%3D&utm_source=qr"
+           target="_blank" class="social-link instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.linkedin.com/in/ajuliabremer?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+           target="_blank" class="social-link linkedin">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
