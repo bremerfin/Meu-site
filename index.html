@@ -4,34 +4,31 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ana Júlia Bremer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{--y:#E8DDB5;--yh:#d9cc9e;--d:#111;--rb:#0B1F4B;--rbh:#0d2660;--g:#888}
     body{font-family:'Inter',sans-serif;background:#fff;color:var(--d);overflow-x:hidden}
 
-    /* ===== HOME ===== */
-    #home{min-height:100vh;background:#fff;display:flex;flex-direction:column;align-items:center;padding:80px 20px 50px}
-    .h-name{font-size:1rem;font-weight:500;color:#555;letter-spacing:1px;margin-bottom:48px}
-    .h-hero{text-align:center;max-width:720px;margin-bottom:64px}
-    .h-hero h1{font-size:3.2rem;font-weight:900;color:var(--d);line-height:1.15;letter-spacing:-1.5px}
-    .h-hero h1 span{display:inline;background:linear-gradient(to top,rgba(232,221,181,.45) 0%,rgba(232,221,181,.45) 40%,transparent 40%);padding:0 6px}
-    .h-hero h1::after{content:'';display:block;width:80px;height:3px;background:var(--d);margin:20px auto 0;border-radius:2px}
+    #home{min-height:100vh;background:#fff;display:flex;flex-direction:column;align-items:center;padding:60px 20px 50px}
+    .h-name{font-size:.85rem;font-weight:400;color:#999;letter-spacing:2px;margin-bottom:40px;text-transform:uppercase}
+    .h-hero{text-align:center;max-width:600px;margin-bottom:56px}
+    .h-hero h1{font-size:2.4rem;font-weight:800;color:var(--d);line-height:1.2;letter-spacing:-1px}
+    .h-hero h1 span{display:inline;background:linear-gradient(to top,rgba(232,221,181,.5) 0%,rgba(232,221,181,.5) 35%,transparent 35%);padding:0 4px}
 
-    .cg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:860px;width:100%;padding:0 16px}
-    .c{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;background:#111;transition:transform .3s}
-    .c:hover{transform:scale(1.02)}
-    .cb{position:absolute;inset:0;background-size:cover;background-position:center top;opacity:.35;transition:opacity .4s}
-    .c:hover .cb{opacity:.25}
-    .co{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.15),rgba(0,0,0,.75) 55%,rgba(0,0,0,.95))}
-    .cc{position:relative;z-index:2;padding:22px}
-    .bd{display:inline-block;border:1.5px solid rgba(255,255,255,.55);color:#fff;font-size:.67rem;font-weight:600;letter-spacing:.5px;padding:4px 12px;border-radius:30px;margin-bottom:12px}
-    .ct{font-size:1.55rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:8px;letter-spacing:-.5px}
-    .cd{font-size:.8rem;color:rgba(255,255,255,.72);line-height:1.6;margin-bottom:18px}
-    .cbtn{display:block;width:100%;background:var(--y);color:var(--d);border:none;border-radius:30px;padding:12px 20px;font-size:.7rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-align:center;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif;text-decoration:none}
+    .cg{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:960px;width:100%;padding:0 12px}
+    .c{position:relative;border-radius:18px;overflow:hidden;cursor:pointer;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;background:#111;transition:transform .3s}
+    .c:hover{transform:scale(1.015)}
+    .cb{position:absolute;inset:0;background-size:cover;background-position:center top;opacity:.7;transition:opacity .4s}
+    .c:hover .cb{opacity:.6}
+    .co{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,.25) 45%,rgba(0,0,0,.7) 65%,rgba(0,0,0,.93) 100%)}
+    .cc{position:relative;z-index:2;padding:24px}
+    .bd{display:inline-block;border:1.5px solid rgba(255,255,255,.4);color:rgba(255,255,255,.85);font-size:.62rem;font-weight:500;letter-spacing:.5px;padding:4px 14px;border-radius:30px;margin-bottom:14px}
+    .ct{font-size:1.5rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:8px;letter-spacing:-.5px}
+    .cd{font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.65;margin-bottom:20px}
+    .cbtn{display:block;width:100%;background:var(--y);color:var(--d);border:none;border-radius:30px;padding:13px 20px;font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif;text-decoration:none}
     .cbtn:hover{background:var(--yh);transform:translateY(-1px)}
 
-    /* ===== SECTIONS ===== */
     .sec{display:none;min-height:100vh;padding:70px 20px;background:#fff;animation:fi .4s ease}
     .sec.active{display:block}
     @keyframes fi{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -66,7 +63,6 @@
     .tt strong{color:var(--d);font-weight:700}
     .thl{display:inline;background:linear-gradient(to top,rgba(232,221,181,.35) 0%,rgba(232,221,181,.35) 40%,transparent 40%)}
 
-    /* ===== GALERIA ===== */
     .gs{margin-bottom:48px}
     .gh{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
     .gl{font-size:.65rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#ccc}
@@ -75,8 +71,8 @@
     .ab{width:34px;height:34px;border-radius:50%;border:1.5px solid #e0e0e0;background:#fff;color:var(--d);font-size:.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;font-family:'Inter',sans-serif}
     .ab:hover{background:var(--d);color:#fff;border-color:var(--d)}
     .gg{display:flex;gap:12px;overflow:hidden}
-    .gi{position:relative;border-radius:14px;overflow:hidden;background:#f2f2f2;transition:all .6s cubic-bezier(.25,1,.5,1);opacity:.55;transform:scale(.94)}
-    .gi.act{opacity:1;transform:scale(1) translateY(-6px);box-shadow:0 18px 44px rgba(0,0,0,.16)}
+    .gi{position:relative;border-radius:14px;overflow:hidden;background:#f2f2f2;transition:all .6s cubic-bezier(.25,1,.5,1);opacity:.5;transform:scale(.94)}
+    .gi.act{opacity:1;transform:scale(1) translateY(-8px);box-shadow:0 20px 48px rgba(0,0,0,.16)}
     .gi img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;display:block;transition:transform .5s}
     .gi.act img{transform:scale(1.03)}
     .gip{width:100%;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:1.5rem}
@@ -123,20 +119,22 @@
     .cs{display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap}
 
     @media(max-width:620px){
-      .h-hero h1{font-size:2rem;letter-spacing:-.5px}
-      .h-hero{margin-bottom:44px}
-      .h-name{margin-bottom:32px}
-      .cg{grid-template-columns:1fr}.hn{font-size:2rem}.st{font-size:1.9rem}
+      .h-hero h1{font-size:1.7rem;letter-spacing:-.5px}
+      .h-hero{margin-bottom:40px}
+      .h-name{font-size:.75rem;margin-bottom:28px}
+      .cg{grid-template-columns:1fr;gap:12px;padding:0 8px}
+      .c{min-height:260px}
+      .ct{font-size:1.3rem}
+      .st{font-size:1.9rem}
       .pg{grid-template-columns:repeat(2,1fr)}.rb{padding:44px 24px}
       .rt{font-size:2.8rem;letter-spacing:12px}.cx{padding:36px 20px}
-      .c{min-height:240px}.sl{flex-direction:column}.hh{padding:36px 24px}
+      .sl{flex-direction:column}.hh{padding:36px 24px}
       .hht{font-size:1.1rem}.tc{padding:22px 20px 20px}
     }
   </style>
 </head>
 <body>
 
-<!-- ===== HOME ===== -->
 <div id="home">
   <div class="h-name">Ana Júlia Bremer</div>
   <div class="h-hero">
@@ -150,7 +148,6 @@
   </div>
 </div>
 
-<!-- ===== MINHA HISTÓRIA ===== -->
 <div id="historia" class="sec">
   <div class="si">
     <button class="bb" onclick="bk()">← Voltar</button>
@@ -183,7 +180,6 @@
   </div>
 </div>
 
-<!-- ===== FINANÇAS PESSOAIS ===== -->
 <div id="pessoais" class="sec">
   <div class="si">
     <button class="bb" onclick="bk()">← Voltar</button>
@@ -199,7 +195,6 @@
   </div>
 </div>
 
-<!-- ===== FINANÇAS EMPRESARIAIS ===== -->
 <div id="empresariais" class="sec">
   <div class="si">
     <button class="bb" onclick="bk()">← Voltar</button>
@@ -214,7 +209,6 @@
   </div>
 </div>
 
-<!-- ===== PALESTRAS ===== -->
 <div id="palestras" class="sec">
   <div class="si">
     <button class="bb" onclick="bk()">← Voltar</button>
