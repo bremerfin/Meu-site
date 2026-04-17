@@ -1,53 +1,27 @@
-// ===== script.js =====
-
-// --- Galeria de fotos ---
-var captions = [
-  'Minha primeira palestra "Renda fixa: Cresça seu dinheiro com inteligência"',
-  "Primeira rodada de negócios",
-  "Maior evento de finanças do Brasil",
-  'Palestra sobre "Como cuidar do dinheiro e dos nossos sonhos"',
-  "Evento como mentora financeira de outros empresários"
+// --- Galeria ---
+var images = [
+  'foto1.jpg','foto2.jpg','foto3.jpg','foto4.jpg','foto5.jpg'
 ];
-var photos = ["foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg", "foto5.jpg"];
-var total = 5;
 var current = 0;
+var total = images.length;
 var autoInterval = null;
 
-function getVisibleCount() {
-  return window.innerWidth <= 620 ? 2 : 3;
-}
-
 function renderGallery() {
-  var track = document.getElementById('gg');
-  var counter = document.getElementById('cnt');
-  if (!track) return;
-
-  var show = getVisibleCount();
-  var pct = show === 2 ? '50%' : '33.333%';
-  var gap = show === 2 ? 6 : 8;
+  var gg = document.getElementById('gg');
+  if (!gg) return;
   var html = '';
-
-  for (var i = 0; i < show; i++) {
-    var idx = (current + i) % total;
-    var activeClass = i === 0 ? ' active' : '';
-
-    html += '<div class="gallery-item' + activeClass + '" style="flex:0 0 calc(' + pct + ' - ' + gap + 'px)">';
-    html += '  <img src="' + photos[idx] + '" alt="' + captions[idx] + '" onerror="this.outerHTML=\'<div class=gallery-placeholder>📸</div>\'" />';
-    html += '  <div class="gallery-caption">';
-    html += '    <span class="gallery-caption-num">0' + (idx + 1) + '</span>';
-    html += '    <span class="gallery-caption-text">' + captions[idx] + '</span>';
-    html += '  </div>';
+  for (var i = 0; i < total; i++) {
+    html += '<div class="gi" style="transform:translateX(-' + (current * 292) + 'px)">';
+    html += '<img src="' + images[i] + '" alt="Foto ' + (i + 1) + '"/>';
     html += '</div>';
   }
-
-  track.innerHTML = html;
-  counter.textContent = '0' + (current + 1) + ' / 0' + total;
+  gg.innerHTML = html;
+  var cnt = document.getElementById('cnt');
+  if (cnt) cnt.textContent = ('0' + (current + 1)).slice(-2) + ' / ' + ('0' + total).slice(-2);
 }
 
-window.addEventListener('resize', renderGallery);
-
-function mv(direction) {
-  current = (current + direction + total) % total;
+function mv(dir) {
+  current = (current + dir + total) % total;
   renderGallery();
   resetAuto();
 }
@@ -80,29 +54,29 @@ function resetAuto() {
 // --- Navegação ---
 function go(id) {
   document.getElementById('home').style.display = 'none';
-  document.querySelectorAll('.section').forEach(function (s) {
-    s.classList.remove('active');
-  });
-  document.getElementById(id).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
+  var secs = document.querySelectorAll('.sec');
+  for (var i = 0; i < secs.length; i++) {
+    secs[i].classList.remove('on');
+  }
+  var target = document.getElementById(id);
+  if (target) {
+    target.classList.add('on');
+    window.scrollTo(0, 0);
+  }
   if (id === 'historia') {
-    setTimeout(function () {
-      document.querySelectorAll('.timeline-item').forEach(function (el, i) {
-        setTimeout(function () {
-          el.classList.add('visible');
-        }, i * 300);
-      });
-    }, 200);
     startAuto();
   }
 }
 
 function bk() {
-  document.querySelectorAll('.section').forEach(function (s) {
-    s.classList.remove('active');
-  });
-  document.getElementById('home').style.display = 'flex';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
   stopAuto();
+  var secs = document.querySelectorAll('.sec');
+  for (var i = 0; i < secs.length; i++) {
+    secs[i].classList.remove('on');
+  }
+  document.getElementById('home').style.display = '';
+  window.scrollTo(0, 0);
 }
+
+// --- Init ---
+renderGallery();
