@@ -36,14 +36,36 @@ a{text-decoration:none;color:inherit}
   border-radius:2px;
   margin:0 auto 14px;
 }
+
+/* --- Frase elegante --- */
 .h-phrase{
-  color:#777;
+  color:#999;
   max-width:380px;
   margin:0 auto 20px;
-  font-size:14px;
-  line-height:1.6;
+  font-size:13px;
+  line-height:1.8;
   font-weight:400;
+  letter-spacing:0.3px;
+  font-style:italic;
+  position:relative;
+  padding:16px 0;
 }
+.h-phrase::before,
+.h-phrase::after{
+  content:'';
+  display:block;
+  width:30px;
+  height:1.5px;
+  background:linear-gradient(90deg,transparent,#d4a843,transparent);
+  margin:0 auto;
+}
+.h-phrase::before{
+  margin-bottom:14px;
+}
+.h-phrase::after{
+  margin-top:14px;
+}
+
 .h-social{
   display:flex;
   justify-content:center;
