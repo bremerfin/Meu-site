@@ -24,20 +24,20 @@ a{text-decoration:none;color:inherit}
   margin-top:-8%;
 }
 .h-name{
-  font-family:'Inter',sans-serif;
-  font-size:clamp(26px,4.5vw,38px);
+  font-family:'Fraunces',serif;
+  font-size:38px;
   font-weight:800;
   letter-spacing:-0.5px;
   margin-bottom:16px;
   color:#1a1a1a;
 }
 .h-phrase{
-  font-family:'Inter',sans-serif;
-  font-style:normal;
+  font-family:'Fraunces',serif;
+  font-style:italic;
   color:#999;
   max-width:420px;
   margin:0 auto;
-  font-size:14px;
+  font-size:18px;
   line-height:1.7;
   font-weight:300;
   letter-spacing:0.2px;
@@ -71,23 +71,20 @@ a{text-decoration:none;color:inherit}
 .c-title{font-size:22px;font-weight:800;line-height:1.2;margin-bottom:8px}
 .c-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.5;margin-bottom:20px}
 
-/* Botão transparente com amarelo clean */
+/* Botão amarelo clean */
 .c-btn{
   display:block;
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  color:rgba(255,255,255,.7);
+  background:#c9a84c;
+  color:#1a1a1a;
   padding:14px 0;
   width:100%;text-align:center;border-radius:30px;font-size:12px;
-  font-weight:600;letter-spacing:1.5px;
+  font-weight:700;letter-spacing:1.5px;
   transition:all .3s;
-  border:1px solid rgba(255,255,255,.1);
+  border:none;
 }
 .c:hover .c-btn{
-  background:rgba(255,255,255,.15);
-  color:#fff;
-  border-color:rgba(255,255,255,.2);
+  background:#d4b55a;
+  color:#1a1a1a;
 }
 
 /* ===== SEÇÕES ===== */
@@ -271,6 +268,10 @@ a{text-decoration:none;color:inherit}
 /* ===== RESPONSIVO ===== */
 @media(max-width:700px){
   #home{padding:40px 16px 60px}
+
+  .h-name{font-size:30px}
+  .h-phrase{font-size:15px}
+
   .cg{grid-template-columns:1fr;gap:12px}
   .c{min-height:220px}
   .c-content{padding:22px}
