@@ -37,7 +37,6 @@ function initGallery(){
   const dots=document.getElementById('galDots');
   if(!track)return;
 
-  // Monta itens
   track.innerHTML='';
   galPhotos.forEach((p,i)=>{
     const item=document.createElement('div');
@@ -52,7 +51,6 @@ function initGallery(){
     track.appendChild(item);
   });
 
-  // Monta dots
   dots.innerHTML='';
   galPhotos.forEach((_,i)=>{
     const dot=document.createElement('button');
@@ -76,24 +74,22 @@ function galUpdate(){
   const wrapWidth=wrap.offsetWidth;
   const itemWidth=(wrapWidth - gap*(perView-1))/perView;
 
-  // Define largura de cada item
   items.forEach((item,i)=>{
     item.style.width=itemWidth+'px';
     item.classList.toggle('active',i===galIdx);
 
-    // Restart animação da barra de progresso
+    // Reinicia animação da barra
     const bar=item.querySelector('.gal-progress');
     if(bar){
       bar.style.animation='none';
-      bar.offsetHeight; // force reflow
+      bar.offsetHeight;
       bar.style.animation='';
     }
   });
 
-  // Dots
   dots.forEach((d,i)=>d.classList.toggle('active',i===galIdx));
 
-  // Calcula offset — centraliza o item ativo
+  // Offset para centralizar o ativo
   let startIdx=galIdx - Math.floor(perView/2);
   startIdx=Math.max(0, Math.min(startIdx, galPhotos.length - perView));
   const offset=startIdx*(itemWidth+gap);
@@ -135,7 +131,6 @@ function stopGallery(){
   if(galTimer){clearInterval(galTimer);galTimer=null}
 }
 
-// Botões prev/next
 document.addEventListener('DOMContentLoaded',()=>{
   const prev=document.getElementById('galPrev');
   const next=document.getElementById('galNext');
@@ -143,7 +138,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(next) next.onclick=galNext;
 });
 
-// Resize
 let resizeTimeout;
 window.addEventListener('resize',()=>{
   clearTimeout(resizeTimeout);
