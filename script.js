@@ -2,146 +2,90 @@
 function go(id){
   document.getElementById('home').style.display='none';
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
-  const sec=document.getElementById(id);
-  sec.classList.add('on');
+  document.getElementById(id).classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});
-  if(id==='historia') setTimeout(initGallery,100);
+
+  if(id==='historia') galInit();
 }
-function bk(){
+function back(){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
   document.getElementById('home').style.display='';
   window.scrollTo({top:0,behavior:'smooth'});
-  stopGallery();
 }
 
-/* ===== GALERIA ===== */
+/* ===== GALERIA MOMENTOS ===== */
 const galPhotos=[
-  {src:'foto1.jpg', caption:'Bastidores de um dia de conteúdo'},
-  {src:'foto2.jpg', caption:'Ensinando sobre finanças'},
-  {src:'foto3.jpg', caption:'Workshop de planejamento'},
-  {src:'foto4.jpg', caption:'Aula ao vivo sobre investimentos'},
-  {src:'foto5.jpg', caption:'Nos bastidores da RAIA'},
-  {src:'foto6.jpg', caption:'Construindo futuros'},
-  {src:'foto7.jpg', caption:'Palestra sobre liberdade financeira'},
+  {src:'foto1.jpg', caption:'Minha primeira palestra'},
+  {src:'foto2.jpg', caption:'Primeira rodada de negócios'},
+  {src:'foto3.jpg', caption:'Participação no maior evento de finanças do Brasil'},
+  {src:'foto4.jpg', caption:'Palestra sobre: "Como cuidar do nosso dinheiro e dos nossos sonhos"'},
+  {src:'foto5.jpg', caption:'Participação como mentora financeira de empresários'},
 ];
 
-let galIdx=0;
-let galTimer=null;
+let galIdx=0, galTimer=null, galItemW=0;
 
-function getPerView(){
-  return window.innerWidth<=700 ? 2 : 3;
-}
-
-function initGallery(){
+function galInit(){
   const track=document.getElementById('galTrack');
   const dots=document.getElementById('galDots');
-  if(!track)return;
+  track.innerHTML='';dots.innerHTML='';
 
-  track.innerHTML='';
   galPhotos.forEach((p,i)=>{
-    const item=document.createElement('div');
-    item.className='gal-item';
-    item.setAttribute('data-index',i);
-    item.onclick=()=>galGoTo(i);
-    item.innerHTML=`
-      <img src="${p.src}" alt="${p.caption}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect fill=%22%23e8e8e3%22 width=%22400%22 height=%22400%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2240%22>📸</text></svg>'"/>
-      <div class="gal-caption">${p.caption}</div>
-      <div class="gal-progress"></div>
-    `;
-    track.appendChild(item);
-  });
+    // item
+    const d=document.createElement('div');
+    d.className='gal-item'+(i===0?' active':'');
+    d.onclick=()=>galGo(i);
+    d.innerHTML=`<img src="${p.src}" alt="${p.caption}"><div class="gal-caption">${p.caption}</div><div class="gal-progress"></div>`;
+    track.appendChild(d);
 
-  dots.innerHTML='';
-  galPhotos.forEach((_,i)=>{
+    // dot
     const dot=document.createElement('button');
-    dot.className='gal-dot';
-    dot.onclick=()=>galGoTo(i);
+    dot.className='gal-dot'+(i===0?' active':'');
+    dot.onclick=()=>galGo(i);
     dots.appendChild(dot);
   });
 
-  galIdx=0;
-  galUpdate();
-  startGalTimer();
+  setTimeout(()=>{
+    const first=track.querySelector('.gal-item');
+    if(first) galItemW=first.offsetWidth+12;
+    galGo(0);
+  },100);
+
+  galAuto();
 }
 
-function galUpdate(){
-  const track=document.getElementById('galTrack');
-  const wrap=track.parentElement;
-  const items=track.querySelectorAll('.gal-item');
-  const dots=document.querySelectorAll('.gal-dot');
-  const perView=getPerView();
-  const gap=12;
-  const wrapWidth=wrap.offsetWidth;
-  const itemWidth=(wrapWidth - gap*(perView-1))/perView;
-
-  items.forEach((item,i)=>{
-    item.style.width=itemWidth+'px';
-    item.classList.toggle('active',i===galIdx);
-
-    const bar=item.querySelector('.gal-progress');
-    if(bar){
-      bar.style.animation='none';
-      bar.offsetHeight;
-      bar.style.animation='';
-    }
-  });
-
-  dots.forEach((d,i)=>d.classList.toggle('active',i===galIdx));
-
-  let startIdx=galIdx - Math.floor(perView/2);
-  startIdx=Math.max(0, Math.min(startIdx, galPhotos.length - perView));
-  const offset=startIdx*(itemWidth+gap);
-
-  track.style.transform=`translateX(-${offset}px)`;
-}
-
-function galGoTo(i){
+function galGo(i){
   galIdx=i;
-  galUpdate();
-  restartGalTimer();
+  const track=document.getElementById('galTrack');
+  const items=track.querySelectorAll('.gal-item');
+  const dots=document.getElementById('galDots').querySelectorAll('.gal-dot');
+  const wrap=document.querySelector('.gal-track-wrap');
+
+  if(!items.length)return;
+  galItemW=items[0].offsetWidth+12;
+
+  const wrapW=wrap.offsetWidth;
+  const offset=galIdx*galItemW - (wrapW/2 - items[0].offsetWidth/2);
+  const maxOff=track.scrollWidth - wrapW;
+  const clamp=Math.max(0,Math.min(offset,maxOff));
+
+  track.style.transform=`translateX(-${clamp}px)`;
+
+  items.forEach((el,j)=>el.classList.toggle('active',j===i));
+  dots.forEach((el,j)=>el.classList.toggle('active',j===i));
+
+  galAuto();
 }
 
-function galNext(){
-  galIdx=(galIdx+1)%galPhotos.length;
-  galUpdate();
-  restartGalTimer();
+function galMove(dir){
+  let n=galIdx+dir;
+  if(n<0)n=galPhotos.length-1;
+  if(n>=galPhotos.length)n=0;
+  galGo(n);
 }
 
-function galPrev(){
-  galIdx=(galIdx-1+galPhotos.length)%galPhotos.length;
-  galUpdate();
-  restartGalTimer();
-}
-
-function startGalTimer(){
-  stopGallery();
+function galAuto(){
+  clearInterval(galTimer);
   galTimer=setInterval(()=>{
-    galIdx=(galIdx+1)%galPhotos.length;
-    galUpdate();
+    galMove(1);
   },5000);
 }
-
-function restartGalTimer(){
-  startGalTimer();
-}
-
-function stopGallery(){
-  if(galTimer){clearInterval(galTimer);galTimer=null}
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
-  const prev=document.getElementById('galPrev');
-  const next=document.getElementById('galNext');
-  if(prev) prev.onclick=galPrev;
-  if(next) next.onclick=galNext;
-});
-
-let resizeTimeout;
-window.addEventListener('resize',()=>{
-  clearTimeout(resizeTimeout);
-  resizeTimeout=setTimeout(()=>{
-    if(document.getElementById('historia')?.classList.contains('on')){
-      galUpdate();
-    }
-  },150);
-});
