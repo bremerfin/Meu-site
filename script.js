@@ -78,7 +78,6 @@ function galUpdate(){
     item.style.width=itemWidth+'px';
     item.classList.toggle('active',i===galIdx);
 
-    // Reinicia animação da barra
     const bar=item.querySelector('.gal-progress');
     if(bar){
       bar.style.animation='none';
@@ -89,7 +88,6 @@ function galUpdate(){
 
   dots.forEach((d,i)=>d.classList.toggle('active',i===galIdx));
 
-  // Offset para centralizar o ativo
   let startIdx=galIdx - Math.floor(perView/2);
   startIdx=Math.max(0, Math.min(startIdx, galPhotos.length - perView));
   const offset=startIdx*(itemWidth+gap);
